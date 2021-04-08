@@ -79,6 +79,15 @@
     .hero__bottom
         height: 100%
 
+@media screen and ( max-height: 650px )
+    .title
+        font-size: calc(100rem / 14)
+    .hero__info
+        &>h2
+            font-size: calc(28rem / 14)
+        &>i
+            font-size: calc(25rem / 14)
+
 .photos
     min-height: 100vh
     background: url(../../img/photos/bg.jpg) center / cover no-repeat
