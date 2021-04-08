@@ -110,30 +110,30 @@ const Bayramgulov = () => {
 
 
       <HeroesSection name="scr4">
-              <h2 className="medals__name">
-                Габдульман Хуснутдинович <br />
-                <span>был награжден медалями:</span>
-              </h2>
-              <div
-                className="heroes__section__content heroes__section__content--right"
-                style={{ alignItems: "center" }}
-              >
-                <img src={photo_4} alt="" style={{ maxWidth: "550px" }} />
-                <p>
-                  «За оборону Москвы» <br />
-                  «За отвагу» <br />
-                  «За оборону Сталинграда» <br />
-                  «За оборону Кенигсберга» <br />
-                  «За боевые заслуги» <br />
-                  «За победу над Германией» <br />
-                </p>
-              </div>
+        <h2 className="medals__name">
+          Габдульман Хуснутдинович <br />
+          <span>был награжден медалями:</span>
+        </h2>
+        <div
+          className="heroes__section__content heroes__section__content--right"
+          style={{ alignItems: "center" }}
+        >
+          <img src={photo_4} alt="" style={{ maxWidth: "550px" }} />
+          <p>
+            «За оборону Москвы» <br />
+            «За отвагу» <br />
+            «За оборону Сталинграда» <br />
+            «За оборону Кенигсберга» <br />
+            «За боевые заслуги» <br />
+            «За победу над Германией» <br />
+          </p>
+        </div>
 
-              <div className="medals__text">
-                Габдульман Хуснутдинович, ветеран войны, ветеран труда,
-                заслуженный работник Урала, умер в августе 1982 года.
-              </div>
-            </HeroesSection>
+        <div className="medals__text">
+          Габдульман Хуснутдинович, ветеран войны, ветеран труда,
+          заслуженный работник Урала, умер в августе 1982 года.
+        </div>
+      </HeroesSection>
     </main>
   );
 };
