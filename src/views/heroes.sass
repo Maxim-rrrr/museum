@@ -1,0 +1,46 @@
+.heroes
+  background: #6E6E6E
+  min-height: 100vh
+  &__name
+    font-style: normal
+    font-weight: bold
+    font-size: calc(35rem / 14)
+    text-align: center
+    color: #D9DAD2
+    margin: 0
+    padding: calc(20rem / 14) 0 calc(40rem / 14)
+  &__section
+    position: relative
+    min-height: 100vh
+    padding-top: 2rem
+    &__content
+      display: flex
+      &--left>img
+        margin-right: calc(50rem / 14)
+      &--right>img
+        margin-left: calc(50rem / 14)
+      &>img
+        max-width: 400px
+        height: 100%
+      &>p
+        margin: 0
+        font-style: normal
+        font-weight: normal
+        font-size: calc(25rem / 14)
+        line-height: 1.2
+        text-align: justify
+        color: #D9DAD2
+  &__arrow-down
+    width: 50px
+    height: 50px
+    &-box
+      position: absolute
+      display: inline
+      right: 0
+      bottom: 30px
+      padding: 10px
+      cursor: pointer
+      opacity: 0.5
+      transition: 0.3s
+      &:hover
+        opacity: 1
