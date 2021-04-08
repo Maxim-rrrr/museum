@@ -1,6 +1,16 @@
 .heroes
+  position: relative
   background: #6E6E6E
   min-height: 100vh
+  &__back-to-main
+    position: fixed
+    top: 23px
+    left: 15px
+    cursor: pointer
+    &>img
+      width: 50px
+      height: 40px
+      transform: rotate(90deg)
   &__name
     font-style: normal
     font-weight: bold
@@ -13,12 +23,23 @@
     position: relative
     min-height: 100vh
     padding-top: 2rem
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    &__bg
+      &:nth-of-type(odd)
+        background: url(../img/bg.jpg) center / cover no-repeat 
+      &:nth-of-type(even)
+        background: url(../img/revers_bg.jpg) center / cover no-repeat 
     &__content
       display: flex
+      justify-content: space-between
       &--left>img
         margin-right: calc(50rem / 14)
-      &--right>img
-        margin-left: calc(50rem / 14)
+      &--right
+        flex-direction: row-reverse
+        &>img
+          margin-left: calc(50rem / 14)
       &>img
         max-width: 400px
         height: 100%
@@ -44,3 +65,60 @@
       transition: 0.3s
       &:hover
         opacity: 1
+
+.medals
+  &__name
+    font-style: normal
+    font-weight: normal
+    font-size: calc(40rem / 14)
+    line-height: calc(45rem / 14)
+    text-align: center
+    color: #D9DAD2
+    &>span
+      font-size: calc(30rem / 14)
+  &__text
+    margin: 0 auto 3rem
+    max-width: 700px
+    font-style: normal
+    font-weight: normal
+    font-size: calc(30rem / 14)
+    line-height: calc(45rem / 14)
+    text-align: center
+    color: #D9DAD2
+
+
+@media screen and ( max-width: 860px )
+  .heroes__arrow-down-box
+    display: none
+  .heroes
+    &__section
+      &__content
+        flex-direction: column
+        &>img
+          width: 50%
+          margin: 2rem  auto
+  .medals
+    &__name
+      font-size: calc(27rem / 14)
+      line-height: calc(29rem / 14)
+      &>span
+        font-size: calc(20rem / 14)
+
+    &__text
+      margin-top: 2rem
+      font-size: calc(20rem / 14)
+      line-height: calc(25rem / 14)
+
+@media screen and ( max-width: 560px )
+  .heroes
+    &__name
+      padding: calc(10rem / 14) 0 calc(20rem / 14)
+    &__section
+      &__content
+        flex-direction: column
+        &>img
+          width: 80%
+        &>p
+          font-size: calc(16rem / 14)
+
+    
