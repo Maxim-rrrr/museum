@@ -90,7 +90,7 @@
 
 .photos
     min-height: 100vh
-    background: url(../../img/photos/bg.jpg) center / cover no-repeat
+    background: url(../../img/bg.jpg) center / cover no-repeat 
     &__title
         text-align: center
         font-style: normal
@@ -138,3 +138,34 @@
         justify-content: space-around
         padding: 0 1rem
         
+.main-info
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    min-height: 100vh
+    padding: 4rem 2rem
+    background: url(../../img/revers_bg.jpg) center / cover no-repeat 
+    &__title
+        font-style: normal
+        font-weight: normal
+        font-size: calc(40rem / 14)
+        line-height: calc(45rem / 14)
+        text-align: center
+        color: #D9DAD2
+        &>span
+        font-size: calc(30rem / 14)
+    &__text
+        margin: 0 auto 3rem
+        max-width: 700px
+        font-style: normal
+        font-weight: normal
+        font-size: calc(30rem / 14)
+        line-height: calc(45rem / 14)
+        text-align: center
+        color: #D9DAD2
+    &__btn-add-hero
+        padding: 1rem 5rem  
+        cursor: pointer
+        text-align: center
+        background: #fff
