@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./views/Main/index"
-import Admin from "./views/admin"
+import AdminRouter from "./views/admin/router"
 import AddHero from "./views/addHero"
 import Bayramgulov from "./views/Bayramgulov"
 
@@ -10,7 +10,8 @@ const App = () => {
       <Switch>
         <Route path="/heroes/0" component={ Bayramgulov } />
 
-        <Route path="/admin" component={ Admin } />
+        <Route exact path="/admin" component={ AdminRouter } />
+        <Route exact path="/admin/*" component={ AdminRouter } />
 
         <Route path="/add-hero" component={ AddHero } />
 
