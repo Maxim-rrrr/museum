@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 
 import SectionImgText from "./components/Sections/SectionImgText"
 import SectionTextImg from "./components/Sections/SectionTextImg"
+import SectionText from "./components/Sections/SectionText"
+import SectionImg from "./components/Sections/SectionImg"
+import SectionImgImg from "./components/Sections/SectionImgImg"
+import SectionTextText from "./components/Sections/SectionTextText"
+
 
 import "./addHero.sass"
 
@@ -100,6 +105,42 @@ const AddHero = () => {
             } else if (section.type === typeSectionTextImg) {
               return (
                 <SectionTextImg 
+                  index = { index } 
+                  last = { index === sections.length - 1 } 
+                  first = { index === 0 } 
+                  setContent = {setContent}
+                />
+              )
+            } else if (section.type === typeSectionText) {
+              return (
+                <SectionText
+                  index = { index } 
+                  last = { index === sections.length - 1 } 
+                  first = { index === 0 } 
+                  setContent = {setContent}
+                />
+              )
+            } else if (section.type === typeSectionImg) {
+              return (
+                <SectionImg
+                  index = { index } 
+                  last = { index === sections.length - 1 } 
+                  first = { index === 0 } 
+                  setContent = {setContent}
+                />
+              )
+            } else if (section.type === typeSectionImgImg) {
+              return (
+                <SectionImgImg
+                  index = { index } 
+                  last = { index === sections.length - 1 } 
+                  first = { index === 0 } 
+                  setContent = {setContent}
+                />
+              )
+            } else if (section.type === typeSectionTextText) {
+              return (
+                <SectionTextText
                   index = { index } 
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 

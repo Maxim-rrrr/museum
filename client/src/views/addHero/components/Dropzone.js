@@ -1,46 +1,49 @@
 import React, {useEffect, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
 
-const thumbsContainer = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  marginTop: 16
-};
 
-const thumb = {
-  width: "100%",
-  padding: 4,
-  boxSizing: 'border-box'
-};
+const Dropzone = (props) => {
+  const thumbsContainer = {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 16
+  };
+  
+  const thumb = {
+    width: "100%",
+    padding: 4,
+    boxSizing: 'border-box'
+  };
+  
+  const thumbInner = {
+    overflow: 'hidden',
+    minHeight: '300px',
+  };
+  
+  const img = {
+    display: 'block',
+    width: 'auto',
+    height: '100%',
+    maxHeight: '300px',
+    margin: "0 auto"
+  };
+  
+  const dropzoneSection = {
+    width: '45%',
+    minHeight: '300px',
+    margin: props.full ? "20vh auto 0" : 0
+  };
+  
+  const dropzone = {
+    textAlign: "center",
+    padding: "2rem",
+    cursor: "pointer",
+    border: "3px dashed #D9DAD2",
+    borderRadius: "5px" 
+  }
 
-const thumbInner = {
-  overflow: 'hidden',
-  minHeight: '300px',
-};
 
-const img = {
-  display: 'block',
-  width: 'auto',
-  height: '100%',
-  maxHeight: '300px',
-  margin: "0 auto"
-};
-
-const dropzoneSection = {
-  width: '45%',
-  minHeight: '300px'
-};
-
-const dropzone = {
-  textAlign: "center",
-  padding: "2rem",
-  cursor: "pointer",
-  border: "3px dashed #D9DAD2",
-  borderRadius: "5px" 
-}
-
-const Dropzone = () => {
   const [files, setFiles] = useState([]);
   const {getRootProps, getInputProps} = useDropzone({
     accept: 'image/*',
