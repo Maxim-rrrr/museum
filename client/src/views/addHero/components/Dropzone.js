@@ -51,6 +51,8 @@ const Dropzone = (props) => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
       })));
+
+      props.setContent(acceptedFiles) 
     }
   });
   

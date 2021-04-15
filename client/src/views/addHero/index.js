@@ -77,7 +77,7 @@ const AddHero = () => {
 
     setSections([...sections, section])
 
-    console.log(sections)
+    // console.log(sections)
   }
 
   return (
@@ -158,9 +158,11 @@ const AddHero = () => {
         >
           +
         </button>
+
+        
       </Container>
       
-
+      
     </>
   )
 }

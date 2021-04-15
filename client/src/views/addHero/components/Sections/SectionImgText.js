@@ -11,8 +11,21 @@ const SectionImgText = (props) => {
         to={!props.last ? `scr${props.index + 1}` : false}
       >
 
+        {
+          props.first && 
+          <h1 className="heroes__name">
+            {
+              props.name ? 
+              props.name :
+              "Имя Фамилия Отчество (Будет подставлено из формы снизу)"
+            }
+          </h1>
+        }
+
         <div className="heroes__section__content heroes__section__content--left">
-          <Dropzone />
+          <Dropzone 
+            setContent = { (value) => { props.setContent(props.index, "img", value) }  }
+          />
           <Textarea 
             setContent = { (value) => { props.setContent(props.index, "text", value) }  }
           />

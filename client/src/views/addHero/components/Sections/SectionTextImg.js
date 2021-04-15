@@ -13,7 +13,9 @@ const SectionTextImg = (props) => {
       >
 
         <div className="heroes__section__content heroes__section__content--right">
-          <Dropzone />
+          <Dropzone 
+            setContent = { (value) => { props.setContent(props.index, "img", value) }  }
+          />
           <Textarea 
             setContent = { (value) => { props.setContent(props.index, "text", value) }  }
           />

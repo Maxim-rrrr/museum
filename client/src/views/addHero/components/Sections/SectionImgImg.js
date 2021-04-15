@@ -12,8 +12,12 @@ const SectionImgImg = (props) => {
       >
 
         <div className="heroes__section__content">
-          <Dropzone />
-          <Dropzone />
+          <Dropzone 
+            setContent = { (value) => { props.setContent(props.index, "img1", value) }  }
+          />
+          <Dropzone 
+            setContent = { (value) => { props.setContent(props.index, "img2", value) }  }
+          />
         </div>
 
         <div/>

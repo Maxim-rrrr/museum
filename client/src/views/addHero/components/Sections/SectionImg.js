@@ -12,6 +12,7 @@ const SectionImg = (props) => {
         <div className="heroes__section__content">
           <Dropzone 
             full = { true }
+            setContent = { (value) => { props.setContent(props.index, "img", value) }  }
           />
         </div>
 
