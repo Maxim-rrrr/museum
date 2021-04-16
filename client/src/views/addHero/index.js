@@ -2,7 +2,10 @@ import React from 'react';
 import Header from "./components/Header"
 import Container from "@material-ui/core/Container";
 
-import { Link } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
 
 import SectionImgText from "./components/Sections/SectionImgText"
 import SectionTextImg from "./components/Sections/SectionTextImg"
@@ -11,8 +14,9 @@ import SectionImg from "./components/Sections/SectionImg"
 import SectionImgImg from "./components/Sections/SectionImgImg"
 import SectionTextText from "./components/Sections/SectionTextText"
 
-
 import "./addHero.sass"
+
+import { useHttp } from "../../hooks/http.hook"
 
 export const typeSectionImgText = 1
 export const typeSectionTextImg = 2
@@ -22,8 +26,25 @@ export const typeSectionTextText = 5
 export const typeSectionImgImg = 6
 
 
-
 const AddHero = () => {
+  // Alert 
+  const [alert, setAlert] = React.useState(false);
+  const [alertText, setAlertText] = React.useState("");
+  const [alertColor, setAlertColor] = React.useState("error");
+  /**
+   * Возможные цвета:
+   * error, warning, info, success
+   */
+  
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setAlert(false);
+  };
+
+  // Sidebar
   const [sideBar, setSideBar] = React.useState({
     top: false,
     left: false,
@@ -39,6 +60,7 @@ const AddHero = () => {
     setSideBar({ ...sideBar, [anchor]: open });
   };
 
+  // Sections
   const [sections, setSections] = React.useState([
     {
       type: typeSectionImgText,
@@ -52,7 +74,6 @@ const AddHero = () => {
     let s = sections
     s[index].content[key] = value
     setSections(s)
-    console.log(s)
   }
 
   const addSection = (type) => {
@@ -80,6 +101,138 @@ const AddHero = () => {
     // console.log(sections)
   }
 
+  const delSection = (index) => {
+    let s = sections
+    s.splice(index, 1)
+    setSections(s)
+    
+    // Костыль для перерендеринга
+    setSideBar({ ...sideBar, ["right"]: false });
+  }
+
+  // Form
+  const [values, setValues] = React.useState({
+    name: "",
+    surname: "",
+    patronymic: "",
+    email: "",
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+    console.log(sections)
+  };
+
+  const { request } = useHttp();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      // Проверка обязательных полей в форме
+      if (!values.surname) {
+        setAlertText("Фамилия не указана")
+        setAlertColor("error")
+        setAlert(true)
+        return
+      } 
+
+      if (!values.name) {
+        setAlertText("Имя не указанo")
+        setAlertColor("error")
+        setAlert(true)
+        return
+      } 
+
+      if (!values.email) {
+        setAlertText("Email не указан")
+        setAlertColor("error")
+        setAlert(true)
+        return
+      } 
+
+      // Проверка на заполненность секций
+      sections.forEach((section, index) => {
+        if (Object.keys(section.content).some(v => v == "img")) {
+          if (!section.content.img) {
+            setAlertText(`В ${index + 1} секции не загружено изображение`)
+            setAlertColor("error")
+            setAlert(true)
+            return
+          } 
+        }
+        if (Object.keys(section.content).some(v => v == "img1" || v == "img2")) {
+          if (!section.content.img1 || !section.content.img2) {
+            setAlertText(`В ${index + 1} секции не загружено изображение`)
+            setAlertColor("error")
+            setAlert(true)
+            return
+          } 
+        }
+
+        if (Object.keys(section.content).some(v => v == "text")) {
+          if (!section.content.text) {
+            setAlertText(`В ${index + 1} не заполнено текстовое поле`)
+            setAlertColor("error")
+            setAlert(true)
+            return
+          } 
+        }
+        if (Object.keys(section.content).some(v => v == "text1" || v == "text2")) {
+          if (!section.content.text1 || !section.content.text2) {
+            setAlertText(`В ${index + 1} не заполнено текстовое поле`)
+            setAlertColor("error")
+            setAlert(true)
+            return
+          } 
+        }
+
+      })
+
+      /**
+       * Сбор изображений для отправки
+       * 
+       * С начала собираем все изображения со страницы, в полях img оставляем 
+       * пустые строки пока, и на сервер отправляем массив файлов и саму структуру страницы,
+       * там этот массив примет multer и сохранит все файлы на сервере.
+       */
+      let images = []
+      sections.forEach((section, index) => {
+        if (Object.keys(section.content).some(v => v == "img")) {
+          images.push(section.content.img)
+        }
+        if (Object.keys(section.content).some(v => v == "img1" || v == "img2")) {
+          images.push(section.content.img1)
+          images.push(section.content.img2)
+        }
+      })
+
+      const formData = new FormData();
+      formData.append("sections", JSON.stringify(sections));
+      
+      images.forEach(img => {
+        formData.append("images", img);
+      })
+
+      const response = await request("/api/hero/create", "POST", formData, true);
+      
+      if (response) {
+        setAlertText("Успешно!")
+        setAlertColor("success")
+        setAlert(true)
+      } else {
+        setAlertText("Ошибка отправки")
+        setAlertColor("error")
+        setAlert(true)
+      }
+
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  
+
   return (
     <>
       <Header 
@@ -98,8 +251,12 @@ const AddHero = () => {
                   index = { index } 
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 
-                  name = ""
+                  name = { 
+                    values.surname || values.name || values.patronymic ? 
+                    `${values.surname} ${values.name} ${values.patronymic}` : ""
+                  }
                   setContent = {setContent}
+                  delSection = {delSection}
                 />
               )
             } else if (section.type === typeSectionTextImg) {
@@ -109,6 +266,7 @@ const AddHero = () => {
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 
                   setContent = {setContent}
+                  delSection = {delSection}
                 />
               )
             } else if (section.type === typeSectionText) {
@@ -118,6 +276,7 @@ const AddHero = () => {
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 
                   setContent = {setContent}
+                  delSection = {delSection}
                 />
               )
             } else if (section.type === typeSectionImg) {
@@ -127,6 +286,7 @@ const AddHero = () => {
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 
                   setContent = {setContent}
+                  delSection = {delSection}
                 />
               )
             } else if (section.type === typeSectionImgImg) {
@@ -136,6 +296,7 @@ const AddHero = () => {
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 
                   setContent = {setContent}
+                  delSection = {delSection}
                 />
               )
             } else if (section.type === typeSectionTextText) {
@@ -145,6 +306,7 @@ const AddHero = () => {
                   last = { index === sections.length - 1 } 
                   first = { index === 0 } 
                   setContent = {setContent}
+                  delSection = {delSection}
                 />
               )
             }
@@ -158,8 +320,95 @@ const AddHero = () => {
         >
           +
         </button>
+      </Container>
+      
+      <Container maxWidth="md">
+        <form
+          onSubmit={(event) => handleSubmit(event)}
+          noValidate
+          autoComplete="off"
+          style = {{ marginBottom: "7rem" }}
+        >
 
-        
+          <h2 style = {{ textAlign: "center" }}>ФИО Ветерана</h2>
+
+          <div 
+            style = {{ 
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <TextField
+              // className={classes.input}
+              id="outlined-basic"
+              label="Фамилия"
+              variant="outlined"
+              value={values.tel}
+              onChange={handleChange("surname")}
+              required
+            />
+
+            <TextField
+              // className={classes.input}
+              id="outlined-basic"
+              label="Имя"
+              variant="outlined"
+              value={values.tel}
+              onChange={handleChange("name")}
+              required
+            />
+
+            <TextField
+              // className={classes.input}
+              id="outlined-basic"
+              label="Отчество"
+              variant="outlined"
+              value={values.tel}
+              onChange={handleChange("patronymic")}
+            />
+          </div>
+
+          <h2 style = {{ textAlign: "center" }}>Email для отправки уведомления о проверки страницы</h2>
+          
+          <div 
+            style = {{ 
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              // className={classes.input}
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              value={values.tel}
+              onChange={handleChange("email")}
+              required
+            />
+          </div>
+
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{
+              display: "block",
+              margin: "4rem auto",
+              // marginBottom: "7rem",
+              width: "25%",
+            }}
+          >
+            Опубликовать
+          </Button>
+        </form>
+
+        <Snackbar open={alert} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={alertColor}>
+            { alertText }
+          </Alert>
+        </Snackbar>
       </Container>
       
       
@@ -168,3 +417,8 @@ const AddHero = () => {
 }
 
 export default AddHero
+
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}

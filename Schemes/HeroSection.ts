@@ -11,5 +11,5 @@ const heroSection = createSchema(
 )
 
 
-export type heroSection = ExtractDoc<typeof heroSection>
+export type heroSectionSchema = ExtractDoc<typeof heroSection>
 export const HeroSection = typedModel("Setting", heroSection);

@@ -10,6 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/api/admin', require('./api/admin'));
 app.use('/api/setting', require('./api/setting'));
+app.use('/api/hero', require('./api/hero'));
 
 
 app.use("/uploads", express.static("uploads"));

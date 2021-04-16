@@ -31,7 +31,14 @@ const SectionImgText = (props) => {
           />
         </div>
 
-        <div/>
+        {
+          !props.first ?
+          <button 
+            className="open-sidebar-btn"
+            onClick = {() => props.delSection(props.index)}
+          > - </button> : <div />
+        }
+        
       </HeroesSection>
     </>
   )

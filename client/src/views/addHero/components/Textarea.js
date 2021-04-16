@@ -30,6 +30,7 @@ const Textarea = (props) => {
       style={ textareaStyle } 
       value = { value }
       onChange={ (event) => handleChange(event) }
+      placeholder = "Текст"
     ></textarea>
   )
 }

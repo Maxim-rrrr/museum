@@ -22,6 +22,7 @@ const app = express_1.default();
 app.use(body_parser_1.default.json());
 app.use('/api/admin', require('./api/admin'));
 app.use('/api/setting', require('./api/setting'));
+app.use('/api/hero', require('./api/hero'));
 app.use("/uploads", express_1.default.static("uploads"));
 app.use("/file", express_1.default.static("file"));
 if (process.env.NODE_ENV === "production") {

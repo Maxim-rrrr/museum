@@ -52,7 +52,7 @@ const Dropzone = (props) => {
         preview: URL.createObjectURL(file)
       })));
 
-      props.setContent(acceptedFiles) 
+      props.setContent(acceptedFiles[0]) 
     }
   });
   
