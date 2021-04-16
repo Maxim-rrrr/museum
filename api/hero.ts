@@ -6,6 +6,7 @@ import upload from "../modules/fileStorage";
 import delFile from "../modules/delFile"
 
 import { heroSectionSchema, HeroSection } from "../Schemes/HeroSection"
+import {heroPageSchema, HeroPage} from "../Schemes/HeroPage"
 
 /**
  * /api/hero/create
@@ -16,12 +17,23 @@ import { heroSectionSchema, HeroSection } from "../Schemes/HeroSection"
  *
  * @returns { object } 
  */
-router.post("/create", upload.array('images'), (req: any, res: any) => {
+router.post("/create", upload.array('images'), async (req: any, res: any) => {
   try {
     let sections = JSON.parse(req.body.sections)
     let images = req.files
     
-    sections.forEach((section: heroSectionSchema) => {
+    
+    let page = {
+      status: "verification",
+      email: req.body.email,
+      nameHero: req.body.nameHero,
+      surnameHero: req.body.surnameHero,
+      patronymicHero: req.body.patronymicHero,
+      sections: [],
+    }
+    
+
+    await sections.forEach(async (section: heroSectionSchema) => {
       if (section.content.img) {
         section.content.img = images.shift().filename
       }
@@ -31,10 +43,17 @@ router.post("/create", upload.array('images'), (req: any, res: any) => {
       if (section.content.img2) {
         section.content.img2 = images.shift().filename
       }
+
+      
+      const s = await HeroSection.create(section).then()
+      page.sections.push(s._id)
     })
 
-    console.log(sections)
-    res.send(true)
+    await HeroPage.create(page).then(p => {
+      res.send(p)
+    })
+
+    // res.send(true)
   } catch (error) {
     console.log(error)
     res.send(false)

@@ -207,7 +207,15 @@ const AddHero = () => {
         }
       })
 
+      
+
       const formData = new FormData();
+
+      formData.append("nameHero", values.surname);
+      formData.append("surnameHero", values.name);
+      formData.append("patronymicHero", values.patronymic);
+      formData.append("email", values.email);
+
       formData.append("sections", JSON.stringify(sections));
       
       images.forEach(img => {

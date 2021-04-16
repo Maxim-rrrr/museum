@@ -7,11 +7,13 @@ const heroPage = createSchema(
     email: Type.string({ required: true }),
     
     nameHero: Type.string({ required: true }),
-    sections: Type.array({ required: true })
+    surnameHero: Type.string({ required: true }),
+    patronymicHero: Type.string({ required: true }),
+    sections: Type.array({ required: true }).of(Type.string())
   },
   { timestamps: { createdAt: true } }
 )
 
 
 export type heroPageSchema = ExtractDoc<typeof heroPage>
-export const HeroPage = typedModel("Setting", heroPage);
+export const HeroPage = typedModel("HeroPage", heroPage);
