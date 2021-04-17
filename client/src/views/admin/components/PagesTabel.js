@@ -9,6 +9,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
+import { Link } from "react-router-dom"
+
 const columns = [
   { id: 'name', label: 'Имя', minWidth: 170 },
   { id: 'email', label: 'Email', minWidth: 170, align: 'center' },
@@ -32,6 +34,7 @@ function createData(page) {
   }
 
   return { 
+    id: page._id,
     name: `${page.surnameHero} ${page.nameHero} ${page.patronymicHero}`, 
     email: page.email, 
     date: page.createdAt, 
@@ -89,35 +92,43 @@ export default function PagesTable(props) {
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => {
-                    const value = row[column.id];
-                    console.log(value)
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      console.log(value)
 
-                    let style = { };
+                      let style = { 
+                        display: "block",
+                        width: "100%",
+                        height: "100%",
+                        padding: "1rem",
+                        color: "#000" 
+                      };
 
-                    if (column.id === "status") {
-                      style.fontWeight = 700
+                      if (column.id === "status") {
+                        style.fontWeight = 700
 
-                      if (value === "Одобрено") {
-                        style.color = "#8bc34a"
+                        if (value === "Одобрено") {
+                          style.color = "#8bc34a"
+                        }
+
+                        if (value === "На проверке") {
+                          style.color = "#fdd835"
+                        }
+
+                        if (value === "Отклонено") {
+                          style.color = "#ef5350"
+                        }
                       }
 
-                      if (value === "На проверке") {
-                        style.color = "#fdd835"
-                      }
-
-                      if (value === "Отклонено") {
-                        style.color = "#ef5350"
-                      }
-                    }
-
-                    return (
-                      <TableCell key={column.id} align={column.align} style = {style}>
-                        {column.format && typeof value === 'number' ? column.format(value) : value}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
+                      return (
+                        <TableCell key={column.id} align={column.align} style = {{padding: 0}}>
+                          <Link to={`admin/page/${row.id}`} style = {style}>
+                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                          </Link>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
               );
             })}
           </TableBody>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Login"
 import Settings from "./Settings"
 import Pages from "./Pages"
+import setPage from "./setPage"
 
 import { useHttp } from '../../hooks/http.hook'
 
@@ -38,6 +39,8 @@ const AdminRouter = () => {
         <Switch>
             <Route exact path="/admin" component={ Pages } />
             <Route exact path="/admin/pages" component={ Pages } />
+
+            <Route exact path="/admin/page/*" component={ setPage } />
 
             <Route exact path="/admin/settings" component={ Settings } />
 
