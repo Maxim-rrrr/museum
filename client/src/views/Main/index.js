@@ -61,7 +61,14 @@ const Main = () => {
             voluptate nisi id saepe totam.
           </div>
 
-          <Link to="/add-hero" className="main-info__btn-add-hero"> add hero </Link>
+          <LinkScroll
+            activeClass="active"
+            to="scr1"
+            spy={true}
+          >
+            <Link to="/add-hero" className="main-info__btn-add-hero"> add hero </Link>
+          </LinkScroll>
+          
 
           <LinkScroll
             activeClass="active"

@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
+import Checkbox from '@material-ui/core/Checkbox';
 
 import SectionImgText from "./components/Sections/SectionImgText"
 import SectionTextImg from "./components/Sections/SectionTextImg"
@@ -123,6 +124,12 @@ const AddHero = () => {
     console.log(sections)
   };
 
+  const [checked, setChecked] = React.useState(true);
+
+  const changeCheckbox = (event) => {
+    setChecked(event.target.checked);
+  };
+
   const { request } = useHttp();
 
   const handleSubmit = async (event) => {
@@ -146,6 +153,13 @@ const AddHero = () => {
 
       if (!values.email) {
         setAlertText("Email не указан")
+        setAlertColor("error")
+        setAlert(true)
+        return
+      } 
+
+      if (!checked) {
+        setAlertText("Подтвердите согласие с пользовательским соглашением")
         setAlertColor("error")
         setAlert(true)
         return
@@ -395,6 +409,21 @@ const AddHero = () => {
               onChange={handleChange("email")}
               required
             />
+          </div>
+          
+          <div style={{ 
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "2rem 0"
+          }}>
+            <Checkbox
+              defaultChecked
+              color="primary"
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+              onChange = {event => changeCheckbox(event)}
+            />
+            <span>Соглашаюсь с условиями <a href="../files/terms-use.pdf" target="_blank">пользовательского соглашения</a></span>
           </div>
 
           <Button

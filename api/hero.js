@@ -38,7 +38,6 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
             patronymicHero: req.body.patronymicHero,
             sections: [],
         };
-        console.log(sections);
         yield sections.forEach((section) => __awaiter(void 0, void 0, void 0, function* () {
             if (section.content.img) {
                 section.content.img = images.shift().filename;
@@ -55,7 +54,6 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
         yield HeroPage_1.HeroPage.create(page).then(p => {
             res.send(p);
         });
-        console.log(page);
         // res.send(true)
     }
     catch (error) {

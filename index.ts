@@ -14,7 +14,7 @@ app.use('/api/hero', require('./api/hero'));
 
 
 app.use("/uploads", express.static("uploads"));
-app.use("/file", express.static("file"));
+app.use("/files", express.static("files"));
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "client", "build")));
