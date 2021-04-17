@@ -22,18 +22,6 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
     let sections = JSON.parse(req.body.sections)
     let images = req.files
     
-    
-    let page = {
-      status: "verification",
-      email: req.body.email,
-      nameHero: req.body.nameHero,
-      surnameHero: req.body.surnameHero,
-      patronymicHero: req.body.patronymicHero,
-      sections: [],
-    }
-
-    const pageId = await HeroPage.create(page).then()
-    
     sections.forEach(async (section: heroSectionSchema) => {
       if (section.content.img) {
         section.content.img = images.shift().filename
@@ -46,26 +34,16 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
       }
     })
 
-    let sectionsId: Array<string> = []
+    let page = {
+      status: "verification",
+      email: req.body.email,
+      nameHero: req.body.nameHero,
+      surnameHero: req.body.surnameHero,
+      patronymicHero: req.body.patronymicHero,
+      sections,
+    }
     
-    let len = 0
-    sections.forEach(() => len++)
-
-    sections.forEach(async (section: heroSectionSchema, index: number) => {
-      const s = await HeroSection.create(section).then()
-      sectionsId.push(s._id)
-      
-      if (index === len - 1) {
-        
-        HeroPage.updateOne({ _id: pageId }, {
-            sections: sectionsId
-        }).then(() => {
-            HeroPage.findOne({ _id: pageId }).then(pe => res.send({status: 200, page: pe}))
-        });
-      }
-      
-    })
-
+    HeroPage.create(page).then(p => res.send(p))
     
   } catch (error) {
     console.log(error)
@@ -105,18 +83,7 @@ router.post("/getPage", async (req: any, res: any) => {
       return
     }
 
-    page.sections.forEach(async (sectionId, index) => {
-      HeroSection.findOne({ _id: sectionId }).then(section => {
-        if (section) {
-          page.sections[index] = section;
-          if (index === page.sections.length - 1) {
-              res.send({ status: 200, page })
-          }
-        }
-      })
-    })
-
-    return page
+    res.send({ status: 200, page })
     
   })
 

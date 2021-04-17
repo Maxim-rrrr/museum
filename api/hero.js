@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
 const fileStorage_1 = __importDefault(require("../modules/fileStorage"));
-const HeroSection_1 = require("../Schemes/HeroSection");
 const HeroPage_1 = require("../Schemes/HeroPage");
 /**
  * /api/hero/create
@@ -30,15 +29,6 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
     try {
         let sections = JSON.parse(req.body.sections);
         let images = req.files;
-        let page = {
-            status: "verification",
-            email: req.body.email,
-            nameHero: req.body.nameHero,
-            surnameHero: req.body.surnameHero,
-            patronymicHero: req.body.patronymicHero,
-            sections: [],
-        };
-        const pageId = yield HeroPage_1.HeroPage.create(page).then();
         sections.forEach((section) => __awaiter(void 0, void 0, void 0, function* () {
             if (section.content.img) {
                 section.content.img = images.shift().filename;
@@ -50,20 +40,15 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
                 section.content.img2 = images.shift().filename;
             }
         }));
-        let sectionsId = [];
-        let len = 0;
-        sections.forEach(() => len++);
-        sections.forEach((section, index) => __awaiter(void 0, void 0, void 0, function* () {
-            const s = yield HeroSection_1.HeroSection.create(section).then();
-            sectionsId.push(s._id);
-            if (index === len - 1) {
-                HeroPage_1.HeroPage.updateOne({ _id: pageId }, {
-                    sections: sectionsId
-                }).then(() => {
-                    HeroPage_1.HeroPage.findOne({ _id: pageId }).then(pe => res.send({ status: 200, page: pe }));
-                });
-            }
-        }));
+        let page = {
+            status: "verification",
+            email: req.body.email,
+            nameHero: req.body.nameHero,
+            surnameHero: req.body.surnameHero,
+            patronymicHero: req.body.patronymicHero,
+            sections,
+        };
+        HeroPage_1.HeroPage.create(page).then(p => res.send(p));
     }
     catch (error) {
         console.log(error);
@@ -99,17 +84,17 @@ router.post("/getPage", (req, res) => __awaiter(void 0, void 0, void 0, function
             res.send({ status: 400, message: "Указан неверный id" });
             return;
         }
-        page.sections.forEach((sectionId, index) => __awaiter(void 0, void 0, void 0, function* () {
-            HeroSection_1.HeroSection.findOne({ _id: sectionId }).then(section => {
-                if (section) {
-                    page.sections[index] = section;
-                    if (index === page.sections.length - 1) {
-                        res.send({ status: 200, page });
-                    }
-                }
-            });
-        }));
-        return page;
+        // page.sections.forEach(async (sectionId, index) => {
+        //   HeroSection.findOne({ _id: sectionId }).then(section => {
+        //     if (section) {
+        //       page.sections[index] = section;
+        //       if (index === page.sections.length - 1) {
+        //           res.send({ status: 200, page })
+        //       }
+        //     }
+        //   })
+        // })
+        res.send({ status: 200, page });
     });
 }));
 module.exports = router;

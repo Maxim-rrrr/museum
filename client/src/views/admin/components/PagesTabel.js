@@ -122,7 +122,7 @@ export default function PagesTable(props) {
 
                       return (
                         <TableCell key={column.id} align={column.align} style = {{padding: 0}}>
-                          <Link to={`admin/page/${row.id}`} style = {style}>
+                          <Link to={`../admin/page/${row.id}`} style = {style}>
                             {column.format && typeof value === 'number' ? column.format(value) : value}
                           </Link>
                         </TableCell>

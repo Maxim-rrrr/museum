@@ -14,7 +14,20 @@ const heroPage = createSchema(
     nameHero: Type.string({ required: true }),
     surnameHero: Type.string({ required: true }),
     patronymicHero: Type.string({ required: true }),
-    sections: Type.array({ required: true }).of(Type.string())
+    sections: Type.array({ required: true }).of({
+      type: Type.number({ require: true }),
+      content: {
+        text: Type.string(),
+        text1: Type.string(),
+        text2: Type.string(),
+        img: Type.string(),
+        img1: Type.string(),
+        img2: Type.string(),
+      },
+      additionallyTop: Type.array({ default: [] }).of(Type.string()),
+      additionallyBottom: Type.array({ default: [] }).of(Type.string())
+
+    })
   },
   { timestamps: { createdAt: true } }
 )

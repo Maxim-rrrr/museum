@@ -6,7 +6,7 @@ const HeroesSection = (props) => {
     <div className="heroes__section__bg">
       <Element name={ props.name }>
         <div className="container">
-          <section className="heroes__section">
+          <section className="heroes__section" style = {props.style}>
             { props.children }
 
             {
