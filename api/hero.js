@@ -61,4 +61,15 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
         res.send(false);
     }
 }));
+/**
+ * /api/hero/getPages
+ * Запрос всех страниц
+ *
+ * @returns { object }
+ */
+router.post("/getPages", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    HeroPage_1.HeroPage.find({}).then(pages => {
+        res.send({ status: 200, pages });
+    });
+}));
 module.exports = router;

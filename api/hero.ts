@@ -60,4 +60,16 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
   }
 });
 
+/**
+ * /api/hero/getPages
+ * Запрос всех страниц
+ *
+ * @returns { object } 
+ */
+router.post("/getPages", async (req: any, res: any) => {
+  HeroPage.find({}).then(pages => {
+    res.send({ status: 200, pages })
+  })
+})
+
 module.exports = router;

@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HeroPage = void 0;
 const ts_mongoose_1 = require("ts-mongoose");
+/** Статусы:
+ * approved
+ * verification
+ * rejected
+ */
 const heroPage = ts_mongoose_1.createSchema({
     status: ts_mongoose_1.Type.string({ required: true }),
     email: ts_mongoose_1.Type.string({ required: true }),

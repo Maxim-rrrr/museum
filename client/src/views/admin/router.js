@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Login"
-import Сheck from "./Сheck"
-import Published from "./Published"
+import Settings from "./Settings"
+import Pages from "./Pages"
 
 import { useHttp } from '../../hooks/http.hook'
 
@@ -36,12 +36,12 @@ const AdminRouter = () => {
     return (
       <Router>
         <Switch>
-            <Route exact path="/admin" component={ Сheck } />
-            <Route exact path="/admin/check" component={ Сheck } />
+            <Route exact path="/admin" component={ Pages } />
+            <Route exact path="/admin/pages" component={ Pages } />
 
-            <Route exact path="/admin/published" component={ Published } />
+            <Route exact path="/admin/settings" component={ Settings } />
 
-            <Route exact path="/admin/*" component={ Сheck } />
+            <Route exact path="/admin/*" component={ Pages } />
         </Switch>
       </Router>
     )

@@ -1,5 +1,10 @@
 import { createSchema, Type, typedModel, ExtractDoc } from 'ts-mongoose';
 
+/** Статусы:
+ * approved
+ * verification
+ * rejected
+ */
 
 const heroPage = createSchema(
   {
