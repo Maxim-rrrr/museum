@@ -38,7 +38,8 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
             patronymicHero: req.body.patronymicHero,
             sections: [],
         };
-        yield sections.forEach((section) => __awaiter(void 0, void 0, void 0, function* () {
+        const pageId = yield HeroPage_1.HeroPage.create(page).then();
+        sections.forEach((section) => __awaiter(void 0, void 0, void 0, function* () {
             if (section.content.img) {
                 section.content.img = images.shift().filename;
             }
@@ -48,13 +49,21 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
             if (section.content.img2) {
                 section.content.img2 = images.shift().filename;
             }
-            const s = yield HeroSection_1.HeroSection.create(section).then();
-            page.sections.push(s._id);
         }));
-        yield HeroPage_1.HeroPage.create(page).then(p => {
-            res.send(p);
-        });
-        // res.send(true)
+        let sectionsId = [];
+        let len = 0;
+        sections.forEach(() => len++);
+        sections.forEach((section, index) => __awaiter(void 0, void 0, void 0, function* () {
+            const s = yield HeroSection_1.HeroSection.create(section).then();
+            sectionsId.push(s._id);
+            if (index === len - 1) {
+                HeroPage_1.HeroPage.updateOne({ _id: pageId }, {
+                    sections: sectionsId
+                }).then(() => {
+                    HeroPage_1.HeroPage.findOne({ _id: pageId }).then(pe => res.send({ status: 200, page: pe }));
+                });
+            }
+        }));
     }
     catch (error) {
         console.log(error);
@@ -70,6 +79,37 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
 router.post("/getPages", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     HeroPage_1.HeroPage.find({}).then(pages => {
         res.send({ status: 200, pages });
+    });
+}));
+/**
+ * /api/hero/getPage
+ * Запрос страници по id
+ *
+ * @param { id }
+ *
+ * @returns { object }
+ */
+router.post("/getPage", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.body.id) {
+        res.send({ status: 400, message: "Не указано поле id" });
+        return;
+    }
+    HeroPage_1.HeroPage.findOne({ _id: req.body.id }).then((page) => {
+        if (!page) {
+            res.send({ status: 400, message: "Указан неверный id" });
+            return;
+        }
+        page.sections.forEach((sectionId, index) => __awaiter(void 0, void 0, void 0, function* () {
+            HeroSection_1.HeroSection.findOne({ _id: sectionId }).then(section => {
+                if (section) {
+                    page.sections[index] = section;
+                    if (index === page.sections.length - 1) {
+                        res.send({ status: 200, page });
+                    }
+                }
+            });
+        }));
+        return page;
     });
 }));
 module.exports = router;

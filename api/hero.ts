@@ -31,9 +31,10 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
       patronymicHero: req.body.patronymicHero,
       sections: [],
     }
-    
 
-    await sections.forEach(async (section: heroSectionSchema) => {
+    const pageId = await HeroPage.create(page).then()
+    
+    sections.forEach(async (section: heroSectionSchema) => {
       if (section.content.img) {
         section.content.img = images.shift().filename
       }
@@ -43,17 +44,29 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
       if (section.content.img2) {
         section.content.img2 = images.shift().filename
       }
+    })
 
-      
+    let sectionsId: Array<string> = []
+    
+    let len = 0
+    sections.forEach(() => len++)
+
+    sections.forEach(async (section: heroSectionSchema, index: number) => {
       const s = await HeroSection.create(section).then()
-      page.sections.push(s._id)
+      sectionsId.push(s._id)
+      
+      if (index === len - 1) {
+        
+        HeroPage.updateOne({ _id: pageId }, {
+            sections: sectionsId
+        }).then(() => {
+            HeroPage.findOne({ _id: pageId }).then(pe => res.send({status: 200, page: pe}))
+        });
+      }
+      
     })
 
-    await HeroPage.create(page).then(p => {
-      res.send(p)
-    })
-
-    // res.send(true)
+    
   } catch (error) {
     console.log(error)
     res.send(false)
@@ -70,6 +83,43 @@ router.post("/getPages", async (req: any, res: any) => {
   HeroPage.find({}).then(pages => {
     res.send({ status: 200, pages })
   })
+})
+
+/**
+ * /api/hero/getPage
+ * Запрос страници по id 
+ *
+ * @param { id }
+ * 
+ * @returns { object } 
+ */
+router.post("/getPage", async (req: any, res: any) => {
+  if (!req.body.id) {
+    res.send({ status: 400, message: "Не указано поле id" })
+    return
+  }
+
+  HeroPage.findOne({ _id: req.body.id }).then((page) => {
+    if (!page) {
+      res.send({ status: 400, message: "Указан неверный id" })
+      return
+    }
+
+    page.sections.forEach(async (sectionId, index) => {
+      HeroSection.findOne({ _id: sectionId }).then(section => {
+        if (section) {
+          page.sections[index] = section;
+          if (index === page.sections.length - 1) {
+              res.send({ status: 200, page })
+          }
+        }
+      })
+    })
+
+    return page
+    
+  })
+
 })
 
 module.exports = router;

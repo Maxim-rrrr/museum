@@ -1,22 +1,17 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect,
-  useLocation
-} from "react-router-dom";
 
-const setPage = () => {
-  // let location = useLocation();
+import { useHttp } from '../../hooks/http.hook'
 
+const SetPage = () => {
+  const { request } = useHttp()
+
+  const id = document.location.pathname.split('/')[3]
+  
   return (
     <>
-      {/* { location.pathname } */}
-      { document.location.pathname }
+      { id }
     </>
   )
 }
 
-export default setPage
+export default SetPage
