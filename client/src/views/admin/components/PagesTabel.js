@@ -93,19 +93,21 @@ export default function PagesTable(props) {
                     const value = row[column.id];
                     console.log(value)
 
-                    let style = {};
+                    let style = { };
 
                     if (column.id === "status") {
+                      style.fontWeight = 700
+
                       if (value === "Одобрено") {
-                        style = { color: "#8bc34a" }
+                        style.color = "#8bc34a"
                       }
 
                       if (value === "На проверке") {
-                        style = { color: "#fdd835" }
+                        style.color = "#fdd835"
                       }
 
                       if (value === "Отклонено") {
-                        style = { color: "#ef5350" }
+                        style.color = "#ef5350"
                       }
                     }
 

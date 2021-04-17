@@ -105,34 +105,6 @@ const Pages = () => {
     <>
       <Header title={ <Select /> }/>
       <Container>
-        {/* <PagesTable pages = {[
-          {
-            surnameHero: "Иванов",
-            nameHero: "Иван",
-            patronymicHero: "Иванович",
-            email: "Vasy@gmail.com",
-            createdAt: "2021-04-17T07:37:12.856+00:00",
-            status: "approved",
-          },
-          {
-            surnameHero: "Иванов",
-            nameHero: "Иван",
-            patronymicHero: "Иванович",
-            email: "Vasy@gmail.com",
-            createdAt: "2021-04-17T07:37:12.856+00:00",
-            status: "verification",
-          },
-          {
-            surnameHero: "Иванов",
-            nameHero: "Иван",
-            patronymicHero: "Иванович",
-            email: "Vasy@gmail.com",
-            createdAt: "2021-04-17T07:37:12.856+00:00",
-            status: "rejected",
-          },
-        ]} 
-        /> */}
-
         <PagesTable 
           pages = {pages} 
         />
