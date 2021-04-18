@@ -5,7 +5,6 @@ import logger from "../modules/logger";
 import upload from "../modules/fileStorage";
 import delFile from "../modules/delFile"
 
-import { heroSectionSchema, HeroSection } from "../Schemes/HeroSection"
 import {heroPageSchema, HeroPage} from "../Schemes/HeroPage"
 
 /**
@@ -22,7 +21,7 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
     let sections = JSON.parse(req.body.sections)
     let images = req.files
     
-    sections.forEach(async (section: heroSectionSchema) => {
+    sections.forEach(async (section) => {
       if (section.content.img) {
         section.content.img = images.shift().filename
       }
@@ -67,7 +66,7 @@ router.post("/getPages", async (req: any, res: any) => {
  * /api/hero/getPage
  * Запрос страници по id 
  *
- * @param { id }
+ * @param { string } id
  * 
  * @returns { object } 
  */
@@ -88,5 +87,33 @@ router.post("/getPage", async (req: any, res: any) => {
   })
 
 })
+
+/**
+ * /api/hero/setStatus
+ * Изменение статуса публикации страницы
+ *
+ * @param { string } id
+ * @param { string } status
+ * 
+ * @returns { object } 
+ */
+ router.post("/setStatus", async (req: any, res: any) => {
+  if (!req.body.id) {
+    res.send({ status: 400, message: "Не указано поле id" })
+    return
+  }
+   
+  HeroPage.updateOne({ _id: req.body.id }, { status: req.body.status }).then((page) => {
+    if (!page) {
+      res.send({ status: 400, message: "Указан неверный id" })
+      return
+    }
+
+    res.send({ status: 200 })
+    
+  })
+
+})
+
 
 module.exports = router;

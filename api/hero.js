@@ -70,7 +70,7 @@ router.post("/getPages", (req, res) => __awaiter(void 0, void 0, void 0, functio
  * /api/hero/getPage
  * Запрос страници по id
  *
- * @param { id }
+ * @param { string } id
  *
  * @returns { object }
  */
@@ -84,17 +84,29 @@ router.post("/getPage", (req, res) => __awaiter(void 0, void 0, void 0, function
             res.send({ status: 400, message: "Указан неверный id" });
             return;
         }
-        // page.sections.forEach(async (sectionId, index) => {
-        //   HeroSection.findOne({ _id: sectionId }).then(section => {
-        //     if (section) {
-        //       page.sections[index] = section;
-        //       if (index === page.sections.length - 1) {
-        //           res.send({ status: 200, page })
-        //       }
-        //     }
-        //   })
-        // })
         res.send({ status: 200, page });
+    });
+}));
+/**
+ * /api/hero/setStatus
+ * Изменение статуса публикации страницы
+ *
+ * @param { string } id
+ * @param { string } status
+ *
+ * @returns { object }
+ */
+router.post("/setStatus", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.body.id) {
+        res.send({ status: 400, message: "Не указано поле id" });
+        return;
+    }
+    HeroPage_1.HeroPage.updateOne({ _id: req.body.id }, { status: req.body.status }).then((page) => {
+        if (!page) {
+            res.send({ status: 400, message: "Указан неверный id" });
+            return;
+        }
+        res.send({ status: 200 });
     });
 }));
 module.exports = router;
