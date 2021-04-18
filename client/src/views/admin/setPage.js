@@ -5,7 +5,6 @@ import { useHttp } from "../../hooks/http.hook";
 import HeroPage from "../components/HeroPage";
 import Header from "./components/Header";
 
-import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 
 const SetPage = () => {

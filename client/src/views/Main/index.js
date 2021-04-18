@@ -9,10 +9,10 @@ import { Link as LinkScroll, Element } from "react-scroll";
 import { Link } from 'react-router-dom'
 
 import { useHttp } from '../../hooks/http.hook'
-
 import HeroesTable from "../components/HeroesTable";
 
 const Main = () => {
+
   const { request, loading } = useHttp()
 
   const [pages, setPages] = useState([])
@@ -25,6 +25,7 @@ const Main = () => {
       setPages(p.filter(page => page.status === "approved"))
     } catch (error) {
       console.log(error)
+      getPages()
     }
   }
 
@@ -75,13 +76,14 @@ const Main = () => {
 
       <Element name="scr2">
         <section className="main-info">
-          <h2 className="main-info__title"> Title </h2>
+          <h2 className="main-info__title"> Уважаемые граждане! </h2>
           <div className="main-info__text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, a,
-            nesciunt tempora at sunt tempore magnam odio explicabo nihil illo
-            quas facilis veritatis consequuntur quasi commodi ratione rem
-            inventore reiciendis placeat soluta, mollitia eaque? Cumque
-            voluptate nisi id saepe totam.
+          Данный сервис предназначен для сохранения памяти о наших дорогих защитниках и защитниц Отечества.<br/><br/>
+
+          Каждый человек может здесь опубликовать информацию о своих родных, принимавших участие в Великой Отечественной войне, 
+          проявивших там доблесть и отвагу и спасших нашу страну от оккупантов.<br/><br/>
+
+          Будем рады вашему содействию в развитии нашего сервиса!<br/><br/>
           </div>
 
           <LinkScroll
@@ -106,9 +108,12 @@ const Main = () => {
       </Element>
 
       <Element name="scr3">
+        
         {
           loading ? <></> :
-          <HeroesTable pages = { pages }/>
+          <HeroesTable pages = { pages }>
+            
+          </HeroesTable>
         }
       </Element>
     </>

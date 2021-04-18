@@ -15,6 +15,8 @@ import SectionImg from "./components/Sections/SectionImg"
 import SectionImgImg from "./components/Sections/SectionImgImg"
 import SectionTextText from "./components/Sections/SectionTextText"
 
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+
 import "./addHero.sass"
 
 import { useHttp } from "../../hooks/http.hook"
@@ -121,7 +123,6 @@ const AddHero = () => {
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
-    console.log(sections)
   };
 
   const [checked, setChecked] = React.useState(true);
@@ -242,6 +243,7 @@ const AddHero = () => {
         setAlertText("Успешно!")
         setAlertColor("success")
         setAlert(true)
+        setRedirect(true)
       } else {
         setAlertText("Ошибка отправки")
         setAlertColor("error")
@@ -254,9 +256,17 @@ const AddHero = () => {
     }
   }
   
+  const [redirect, setRedirect] = React.useState(false)
 
   return (
     <>
+      {
+        redirect &&
+        <Redirect to={{
+          pathname: '/'
+        }} />
+      }
+
       <Header 
         title="Увековечить память ветерана"
         state={ sideBar }

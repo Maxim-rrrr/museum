@@ -58,7 +58,7 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
  */
 router.post("/getPages", async (req: any, res: any) => {
   HeroPage.find({}).then(pages => {
-    res.send({ status: 200, pages })
+    res.send({ status: 200, pages: pages.reverse() })
   })
 })
 
