@@ -86,15 +86,9 @@ const Main = () => {
           Будем рады вашему содействию в развитии нашего сервиса!<br/><br/>
           </div>
 
-          <LinkScroll
-            activeClass="active"
-            to="scr1"
-            spy={true}
-          >
-            <Link to="/add-hero" className="main-info__btn-add-hero"> Увековечить память ветерана </Link>
-          </LinkScroll>
-          
 
+          <Link to="/add-hero" className="main-info__btn-add-hero"> Увековечить память ветерана </Link>
+          
           <LinkScroll
             activeClass="active"
             to="scr3"

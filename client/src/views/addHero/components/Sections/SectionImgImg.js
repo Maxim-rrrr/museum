@@ -20,7 +20,10 @@ const SectionImgImg = (props) => {
           />
         </div>
 
-        <div/>
+        <button 
+          className="open-sidebar-btn"
+          onClick = {() => props.delSection(props.index)}
+        > - </button>
       </HeroesSection>
     </>
   )
