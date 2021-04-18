@@ -91,7 +91,7 @@ const Main = () => {
             to="scr1"
             spy={true}
           >
-            <Link to="/add-hero" className="main-info__btn-add-hero"> add hero </Link>
+            <Link to="/add-hero" className="main-info__btn-add-hero"> Увековечить память ветерана </Link>
           </LinkScroll>
           
 
