@@ -12,7 +12,7 @@ const App = () => {
 
         <Route path="/add-hero" component={ AddHero } />
 
-        <Route path="/" component={ Main } />
+        <Route path="/*" component={ Main } />
       </Switch>
     </Router>
   )

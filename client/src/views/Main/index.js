@@ -3,12 +3,35 @@ import logo_ngpu from "../../img/main/logo_ngpu.png";
 import logo_archeo from "../../img/main/logo_archeo.png";
 import arrow_down from "../../img/main/arrow_down.svg";
 
+import React, { useState, useEffect } from 'react';
+
 import { Link as LinkScroll, Element } from "react-scroll";
 import { Link } from 'react-router-dom'
+
+import { useHttp } from '../../hooks/http.hook'
 
 import HeroesTable from "../components/HeroesTable";
 
 const Main = () => {
+  const { request, loading } = useHttp()
+
+  const [pages, setPages] = useState([])
+
+  const getPages = async () => {
+    try {
+      let data = await request('/api/hero/getPages', 'POST')
+      let p = data.pages
+      
+      setPages(p.filter(page => page.status === "approved"))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getPages()
+  }, [])
+
   return (
     <>
       <Element name="scr1">
@@ -83,7 +106,10 @@ const Main = () => {
       </Element>
 
       <Element name="scr3">
-        <HeroesTable />
+        {
+          loading ? <></> :
+          <HeroesTable pages = { pages }/>
+        }
       </Element>
     </>
   );
