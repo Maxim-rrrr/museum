@@ -12,7 +12,7 @@ const SectionImgImg = (props) => {
         <div className="heroes__section__content heroes__section__content--left">
           {/* <img src={`/uploads/${props.img1}`} alt="" />
           <img src={`/uploads/${props.img2}`} alt="" /> */}
-          <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img2}) center / cover no-repeat ` }}></div>
+          <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img1}) center / cover no-repeat ` }}></div>
           <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img2}) center / cover no-repeat ` }}></div>
         </div>
 
