@@ -32,6 +32,10 @@ const Hero = () => {
   } else {
     return (
       <>
+        <HeroPage
+          sections={page.sections}
+          name={`${page.surnameHero} ${page.nameHero} ${page.patronymicHero}`}
+        />
         <LinkScroll activeClass="active" to="scr2" spy={true} offset={0}>
           <Link to="/">
             <div className="heroes__back-to-main">
@@ -39,10 +43,6 @@ const Hero = () => {
             </div>
           </Link>
         </LinkScroll>
-        <HeroPage
-          sections={page.sections}
-          name={`${page.surnameHero} ${page.nameHero} ${page.patronymicHero}`}
-        />
       </>
     );
   }

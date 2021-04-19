@@ -11,8 +11,8 @@ const SectionTextText = (props) => {
         {props.first && <h1 className="heroes__name"> {props.name} </h1>}
 
         <div className="heroes__section__content">
-          <p style = {{ marginRight: "2rem" }}> {props.text1} </p>
-          <p style = {{ marginLeft: "2rem" }}> {props.text2} </p>
+          <p className="heroes__section__content__text--left"> {props.text1} </p>
+          <p className="heroes__section__content__text--right"> {props.text2} </p>
         </div>
 
       </HeroesSection>

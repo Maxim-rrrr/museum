@@ -10,7 +10,7 @@ const SectionImgText = (props) => {
         {props.first && <h1 className="heroes__name"> {props.name} </h1>}
 
         <div className="heroes__section__content heroes__section__content--left">
-          <img src={`/uploads/${props.img}`} alt="" />
+          <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img}) center / cover no-repeat ` }}></div>
           <p> {props.text} </p>
         </div>
 
