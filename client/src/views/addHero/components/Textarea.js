@@ -11,7 +11,8 @@ const Textarea = (props) => {
     background: "transparent",
     resize: "none",
     color: "#D9DAD2",
-    fontSize: "1.2rem"
+    fontSize: "1.2rem",
+    margin:"1rem 0"
   }
 
   if (props.full) {

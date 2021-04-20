@@ -13,14 +13,17 @@ const SectionImgText = (props) => {
       >
 
         {
-          props.first && 
+          props.first ?
           <h1 className="heroes__name">
             {
               props.name ? 
               props.name :
               "Имя Фамилия Отчество (Будет подставлено из формы снизу)"
             }
-          </h1>
+          </h1> : 
+          <Input 
+            setContent = { (value) => { props.setContent(props.index, "title", value) }  }
+          />
         }
 
         <div className="heroes__section__content heroes__section__content--left">
@@ -36,6 +39,10 @@ const SectionImgText = (props) => {
             setContent = { (value) => { props.setContent(props.index, "text", value) }  }
           />
         </div>
+
+        <Input 
+          setContent = { (value) => { props.setContent(props.index, "subtitle", value) }  }
+        />
 
         {
           !props.first ?

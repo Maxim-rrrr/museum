@@ -30,6 +30,8 @@ const HeroPage = (props) => {
                 img = { section.content.img }
                 img_sign = { section.content.img_sign }
                 text = { section.content.text }
+                title = { section.content.title }
+                subtitle = { section.content.subtitle }
               />
             )
           } else if (section.type === typeSectionTextImg) {
@@ -40,6 +42,8 @@ const HeroPage = (props) => {
                 img = { section.content.img }
                 img_sign = { section.content.img_sign }
                 text = { section.content.text }
+                title = { section.content.title }
+                subtitle = { section.content.subtitle }
               />
             )
           } else if (section.type === typeSectionText) {
@@ -48,6 +52,8 @@ const HeroPage = (props) => {
                 index = { index } 
                 last = { index === props.sections.length - 1 } 
                 text = { section.content.text }
+                title = { section.content.title }
+                subtitle = { section.content.subtitle }
               />
             )
           } else if (section.type === typeSectionImg) {
@@ -57,6 +63,8 @@ const HeroPage = (props) => {
                 last = { index === props.sections.length - 1 } 
                 img = { section.content.img }
                 img_sign = { section.content.img_sign }
+                title = { section.content.title }
+                subtitle = { section.content.subtitle }
               />
             )
           } else if (section.type === typeSectionTextText) {
@@ -66,6 +74,8 @@ const HeroPage = (props) => {
                 last = { index === props.sections.length - 1 } 
                 text1 = { section.content.text1 }
                 text2 = { section.content.text2 }
+                title = { section.content.title }
+                subtitle = { section.content.subtitle }
               />
             )
           } else if (section.type === typeSectionImgImg) {
@@ -77,6 +87,8 @@ const HeroPage = (props) => {
                 img2 = { section.content.img2 }
                 img_sign1 = { section.content.img_sign1 }
                 img_sign2 = { section.content.img_sign2 }
+                title = { section.content.title }
+                subtitle = { section.content.subtitle }
               />
             )
           }

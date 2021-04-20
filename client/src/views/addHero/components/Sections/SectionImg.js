@@ -9,7 +9,9 @@ const SectionImg = (props) => {
         name={`scr${props.index}`} 
         to={!props.last ? `scr${props.index + 1}` : false}
       >
-
+        <Input 
+          setContent = { (value) => { props.setContent(props.index, "title", value) }  }
+        />                      
         <div className="heroes__section__content">
           <div style = {{ width: "90%", margin: "auto" }}>
             <Dropzone 
@@ -20,7 +22,9 @@ const SectionImg = (props) => {
             />
           </div>
         </div>
-
+        <Input 
+          setContent = { (value) => { props.setContent(props.index, "subtitle", value) }  }
+        />
         <button 
           className="open-sidebar-btn"
           onClick = {() => props.delSection(props.index)}

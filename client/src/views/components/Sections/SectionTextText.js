@@ -8,12 +8,15 @@ const SectionTextText = (props) => {
         name={`scr${props.index}`}
         to={!props.last ? `scr${props.index + 1}` : false}
       >
-        {props.first && <h1 className="heroes__name"> {props.name} </h1>}
+        
+        <h2 className="heroes__name"> {props.title} </h2>
 
         <div className="heroes__section__content">
           <p className="heroes__section__content__text--left"> {props.text1} </p>
           <p className="heroes__section__content__text--right"> {props.text2} </p>
         </div>
+        
+        <h2 className="heroes__section__content__subtitle"> {props.subtitle} </h2>
 
       </HeroesSection>
     </>

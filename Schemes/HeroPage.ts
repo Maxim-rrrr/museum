@@ -26,9 +26,9 @@ const heroPage = createSchema(
         img_sign: Type.string(),
         img_sign1: Type.string(),
         img_sign2: Type.string(),
-      },
-      additionallyTop: Type.array({ default: [] }).of(Type.string()),
-      additionallyBottom: Type.array({ default: [] }).of(Type.string())
+        title: Type.string(),
+        subtitle: Type.string(),
+      }
 
     })
   },

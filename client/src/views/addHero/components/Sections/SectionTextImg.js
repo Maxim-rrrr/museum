@@ -11,7 +11,9 @@ const SectionTextImg = (props) => {
         name={`scr${props.index}`} 
         to={!props.last ? `scr${props.index + 1}` : false}
       >
-
+        <Input 
+          setContent = { (value) => { props.setContent(props.index, "title", value) }  }
+        />
         <div className="heroes__section__content heroes__section__content--right">
           <div style = {{ width: "45%" }}>
             <Dropzone 
@@ -25,6 +27,9 @@ const SectionTextImg = (props) => {
             setContent = { (value) => { props.setContent(props.index, "text", value) }  }
           />
         </div>
+        <Input 
+          setContent = { (value) => { props.setContent(props.index, "subtitle", value) }  }
+        />
 
         <button 
           className="open-sidebar-btn"

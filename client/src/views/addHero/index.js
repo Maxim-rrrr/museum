@@ -88,15 +88,15 @@ const AddHero = () => {
     }
 
     if (type === typeSectionImgText || type === typeSectionTextImg) {
-      section.content = { img: "", img_sign: "", text: "" }
+      section.content = { img: "", img_sign: "", text: "", title: "", subtitle: "" }
     } else if (type === typeSectionText) {
-      section.content = { text: "" }
+      section.content = { text: "", title: "", subtitle: "" }
     } else if (type === typeSectionImg) {
-      section.content = { img: "", img_sign: "" }
+      section.content = { img: "", img_sign: "", title: "", subtitle: "" }
     } else if (type === typeSectionTextText) {
-      section.content = { text1: "", text2: "" }
+      section.content = { text1: "", text2: "", title: "", subtitle: "" }
     } else if (type === typeSectionImgImg) {
-      section.content = { img1: "", img2: "", img_sign1: "", img_sign2: "", }
+      section.content = { img1: "", img2: "", img_sign1: "", img_sign2: "", title: "", subtitle: "" }
     }
 
     setSections([...sections, section])

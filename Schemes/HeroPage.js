@@ -25,9 +25,9 @@ const heroPage = ts_mongoose_1.createSchema({
             img_sign: ts_mongoose_1.Type.string(),
             img_sign1: ts_mongoose_1.Type.string(),
             img_sign2: ts_mongoose_1.Type.string(),
-        },
-        additionallyTop: ts_mongoose_1.Type.array({ default: [] }).of(ts_mongoose_1.Type.string()),
-        additionallyBottom: ts_mongoose_1.Type.array({ default: [] }).of(ts_mongoose_1.Type.string())
+            title: ts_mongoose_1.Type.string(),
+            subtitle: ts_mongoose_1.Type.string(),
+        }
     })
 }, { timestamps: { createdAt: true } });
 exports.HeroPage = ts_mongoose_1.typedModel("HeroPage", heroPage);
