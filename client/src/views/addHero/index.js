@@ -115,10 +115,12 @@ const AddHero = () => {
 
   // Form
   const [values, setValues] = React.useState({
-    name: "",
-    surname: "",
-    patronymic: "",
+    nameHero: "",
+    surnameHero: "",
+    patronymicHero: "",
     email: "",
+    whoWrote: "",
+    byWhom: ""
   });
 
   const handleChange = (prop) => (event) => {
@@ -138,14 +140,14 @@ const AddHero = () => {
 
     try {
       // Проверка обязательных полей в форме
-      if (!values.surname) {
+      if (!values.nameHero) {
         setAlertText("Фамилия не указана")
         setAlertColor("error")
         setAlert(true)
         return
       } 
 
-      if (!values.name) {
+      if (!values.surnameHero) {
         setAlertText("Имя не указанo")
         setAlertColor("error")
         setAlert(true)
@@ -161,6 +163,20 @@ const AddHero = () => {
 
       if (!checked) {
         setAlertText("Подтвердите согласие с пользовательским соглашением")
+        setAlertColor("error")
+        setAlert(true)
+        return
+      } 
+
+      if (!values.whoWrote) {
+        setAlertText("Не указан заявитель")
+        setAlertColor("error")
+        setAlert(true)
+        return
+      } 
+
+      if (!values.byWhom) {
+        setAlertText("Не указано кем приходится вам ветеран")
         setAlertColor("error")
         setAlert(true)
         return
@@ -226,10 +242,12 @@ const AddHero = () => {
 
       const formData = new FormData();
 
-      formData.append("surnameHero", values.surname);
-      formData.append("nameHero", values.name);
-      formData.append("patronymicHero", values.patronymic);
+      formData.append("surnameHero", values.nameHero);
+      formData.append("nameHero", values.surnameHero);
+      formData.append("patronymicHero", values.patronymicHero);
       formData.append("email", values.email);
+      formData.append("whoWrote", values.whoWrote);
+      formData.append("byWhom", values.byWhom);
 
       formData.append("sections", JSON.stringify(sections));
       
@@ -376,8 +394,8 @@ const AddHero = () => {
               id="outlined-basic"
               label="Фамилия"
               variant="outlined"
-              value={values.tel}
-              onChange={handleChange("surname")}
+              value={values.surnameHero}
+              onChange={handleChange("surnameHero")}
               required
             />
 
@@ -386,8 +404,8 @@ const AddHero = () => {
               id="outlined-basic"
               label="Имя"
               variant="outlined"
-              value={values.tel}
-              onChange={handleChange("name")}
+              value={values.nameHero}
+              onChange={handleChange("nameHero")}
               required
             />
 
@@ -396,8 +414,54 @@ const AddHero = () => {
               id="outlined-basic"
               label="Отчество"
               variant="outlined"
-              value={values.tel}
-              onChange={handleChange("patronymic")}
+              value={values.patronymicHero}
+              onChange={handleChange("patronymicHero")}
+            />
+          </div>
+          
+          <h2 style = {{ textAlign: "center" }}> Заявитель </h2>
+
+          <div 
+            style = {{ 
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              // className={classes.input}
+              id="outlined-basic"
+              label="Студент(ка) N курса, факультета ..., <ФИО>"
+              variant="outlined"
+              value={values.whoWrote}
+              onChange={handleChange("whoWrote")}
+              required
+              style = {{ 
+                width: "100%"
+              }}
+            />
+          </div>
+
+          <h2 style = {{ textAlign: "center" }}> Кем вам приходится ветеран? </h2>
+
+          <div 
+            style = {{ 
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TextField
+              // className={classes.input}
+              id="outlined-basic"
+              label="Дедушка / Прадедушка / Бабушка / Прабабушка / ..."
+              variant="outlined"
+              value={values.byWhom}
+              onChange={handleChange("byWhom")}
+              required
+              style = {{ 
+                width: "100%"
+              }}
             />
           </div>
 
@@ -415,7 +479,7 @@ const AddHero = () => {
               id="outlined-basic"
               label="Email"
               variant="outlined"
-              value={values.tel}
+              value={values.email}
               onChange={handleChange("email")}
               required
             />

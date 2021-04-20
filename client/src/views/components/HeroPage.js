@@ -16,7 +16,15 @@ import {
 
 const HeroPage = (props) => {
   return (
-    <>
+    <main style = {{ position: "relative" }}>
+      {
+        props.whoWrote && props.byWhom && 
+        <div className = "whoWrote-byWhom">
+          <p className="whoWrote">{ props.whoWrote }</p>
+          <p className="byWhom">{ props.byWhom }</p>
+        </div>
+      }
+
       {
         props.sections &&
         props.sections.map((section, index) => {
@@ -95,7 +103,7 @@ const HeroPage = (props) => {
           return <></>
         })
       }
-    </>
+    </main>
   )
 }
 

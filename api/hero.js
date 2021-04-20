@@ -46,6 +46,8 @@ router.post("/create", fileStorage_1.default.array('images'), (req, res) => __aw
             nameHero: req.body.nameHero,
             surnameHero: req.body.surnameHero,
             patronymicHero: req.body.patronymicHero,
+            whoWrote: req.body.whoWrote,
+            byWhom: req.body.byWhom,
             sections,
         };
         HeroPage_1.HeroPage.create(page).then(p => res.send(p));

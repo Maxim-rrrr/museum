@@ -39,6 +39,8 @@ router.post("/create", upload.array('images'), async (req: any, res: any) => {
       nameHero: req.body.nameHero,
       surnameHero: req.body.surnameHero,
       patronymicHero: req.body.patronymicHero,
+      whoWrote: req.body.whoWrote,
+      byWhom: req.body.byWhom,
       sections,
     }
     

@@ -158,6 +158,8 @@
           &--right
             margin-left: 0
             margin-bottom: 2rem
+    &__name
+      margin-top: 3rem
   .medals
     &__name
       font-size: calc(27rem / 14)
@@ -180,10 +182,25 @@
         &>p
           font-size: calc(16rem / 14)
 
-// @media screen and ( max-height: 650px )
-//   .heroes
-//     &__section
-//       &__content
-           
+.whoWrote-byWhom
+  position: absolute
+  top: 0
+  right: 0
+  padding: 0 1rem
+  width: 225px
+  text-align: center
+  background: linear-gradient(to left, #7c7979, #00000000);
+.whoWrote
+  color: #ffffff8c
+.byWhom
+  color: #ffffff8c
+
+
+@media screen and ( max-width: 860px )
+  .whoWrote-byWhom
+    width: 100vw
+    right: auto
+    margin-left: auto;
+    margin-right: auto;
 
     

@@ -125,6 +125,8 @@ const SetPage = () => {
         <HeroPage
           sections={page.sections}
           name={`${page.surnameHero} ${page.nameHero} ${page.patronymicHero}`}
+          whoWrote = { page.whoWrote }
+          byWhom = { page.byWhom }
         />
       </>
     );

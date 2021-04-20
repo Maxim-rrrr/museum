@@ -10,9 +10,11 @@ const ts_mongoose_1 = require("ts-mongoose");
 const heroPage = ts_mongoose_1.createSchema({
     status: ts_mongoose_1.Type.string({ required: true }),
     email: ts_mongoose_1.Type.string({ required: true }),
+    whoWrote: ts_mongoose_1.Type.string(),
+    byWhom: ts_mongoose_1.Type.string(),
     nameHero: ts_mongoose_1.Type.string({ required: true }),
     surnameHero: ts_mongoose_1.Type.string({ required: true }),
-    patronymicHero: ts_mongoose_1.Type.string({ required: true }),
+    patronymicHero: ts_mongoose_1.Type.string(),
     sections: ts_mongoose_1.Type.array({ required: true }).of({
         type: ts_mongoose_1.Type.number({ require: true }),
         content: {

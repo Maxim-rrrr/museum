@@ -10,10 +10,12 @@ const heroPage = createSchema(
   {
     status: Type.string({ required: true }),
     email: Type.string({ required: true }),
+    whoWrote: Type.string(),
+    byWhom: Type.string(),
     
     nameHero: Type.string({ required: true }),
     surnameHero: Type.string({ required: true }),
-    patronymicHero: Type.string({ required: true }),
+    patronymicHero: Type.string(),
     sections: Type.array({ required: true }).of({
       type: Type.number({ require: true }),
       content: {
@@ -29,7 +31,6 @@ const heroPage = createSchema(
         title: Type.string(),
         subtitle: Type.string(),
       }
-
     })
   },
   { timestamps: { createdAt: true } }
