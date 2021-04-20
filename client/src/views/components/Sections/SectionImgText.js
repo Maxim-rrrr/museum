@@ -11,7 +11,7 @@ const SectionImgText = (props) => {
 
         <div className="heroes__section__content heroes__section__content--left">
           <div className="heroes__section__content__img-box">
-            <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img}) center / cover no-repeat ` }}></div>
+            <img src={ `/uploads/${props.img}` } className="heroes__section__content__img" alt=""/>
             <p className="heroes__section__content__img-sign"> { props.img_sign } </p>
           </div>
           <p> {props.text} </p>

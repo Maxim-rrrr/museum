@@ -48,8 +48,10 @@
           min-width: 90%
           height: 65vh
       &__img
+        display: block
+        margin: auto
         height: 100%
-        width: 100%
+        max-height: 65vh
       &__img-sign
         text-align: center
         color: #D9DAD2
@@ -130,10 +132,21 @@
       min-height: auto
       &__content
         flex-direction: column
+        height: auto
         &>p
           text-align: center
         &__img-box
-          width: 90%
+          min-width: 45%
+          height: auto
+          &--full
+            margin: auto
+            height: auto
+        &__img
+          margin: auto
+          height: 100%
+          max-height: 100vh 
+          width: 100%
+          max-width: 95vw
         &--left>.heroes__section__content__img-box
           margin: 1rem auto
         &--right>.heroes__section__content__img-box
@@ -164,17 +177,13 @@
     &__section
       &__content
         flex-direction: column
-        &>img
-          width: 80%
         &>p
           font-size: calc(16rem / 14)
 
-@media screen and ( max-height: 650px )
-  .heroes
-    &__section
-      &__content
-        &>img
-          max-width: 300px
+// @media screen and ( max-height: 650px )
+//   .heroes
+//     &__section
+//       &__content
            
 
     

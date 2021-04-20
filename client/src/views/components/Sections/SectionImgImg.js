@@ -12,11 +12,11 @@ const SectionImgImg = (props) => {
 
         <div className="heroes__section__content heroes__section__content--left">
           <div className="heroes__section__content__img-box">
-            <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img1}) center / cover no-repeat ` }}></div>
+            <img src={ `/uploads/${props.img1}` } className="heroes__section__content__img" alt=""/>
             <p className="heroes__section__content__img-sign"> { props.img_sign1 } </p>
           </div>
           <div className="heroes__section__content__img-box">
-            <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img2}) center / cover no-repeat ` }}></div>
+            <img src={ `/uploads/${props.img2}` } className="heroes__section__content__img" alt=""/>
             <p className="heroes__section__content__img-sign"> { props.img_sign2 } </p>
           </div>
         </div>
