@@ -88,15 +88,15 @@ const AddHero = () => {
     }
 
     if (type === typeSectionImgText || type === typeSectionTextImg) {
-      section.content = { img: "", text: "" }
+      section.content = { img: "", img_sign: "", text: "" }
     } else if (type === typeSectionText) {
       section.content = { text: "" }
     } else if (type === typeSectionImg) {
-      section.content = { img: "" }
+      section.content = { img: "", img_sign: "" }
     } else if (type === typeSectionTextText) {
       section.content = { text1: "", text2: "" }
     } else if (type === typeSectionImgImg) {
-      section.content = { img1: "", img2: "" }
+      section.content = { img1: "", img2: "", img_sign1: "", img_sign2: "", }
     }
 
     setSections([...sections, section])
@@ -274,7 +274,7 @@ const AddHero = () => {
         addSection = { addSection }
       />
 
-      <Container>
+      {/* <Container> */}
         {
           sections.map((section, index) => {
             if (section.type === typeSectionImgText) {
@@ -352,7 +352,7 @@ const AddHero = () => {
         >
           +
         </button>
-      </Container>
+      {/* </Container> */}
       
       <Container maxWidth="md">
         <form

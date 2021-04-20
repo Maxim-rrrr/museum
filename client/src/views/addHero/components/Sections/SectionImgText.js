@@ -1,6 +1,7 @@
 import HeroesSection from "../../../components/HeroesSection"
 import Dropzone from "../Dropzone"
 import Textarea from "../Textarea"
+import Input from "../Input"
 
 
 const SectionImgText = (props) => {
@@ -23,9 +24,14 @@ const SectionImgText = (props) => {
         }
 
         <div className="heroes__section__content heroes__section__content--left">
-          <Dropzone 
-            setContent = { (value) => { props.setContent(props.index, "img", value) }  }
-          />
+          <div style = {{ width: "45%" }}>
+            <Dropzone 
+              setContent = { (value) => { props.setContent(props.index, "img", value) }  }
+            />
+            <Input 
+              setContent = { (value) => { props.setContent(props.index, "img_sign", value) }  }
+            />
+          </div>
           <Textarea 
             setContent = { (value) => { props.setContent(props.index, "text", value) }  }
           />

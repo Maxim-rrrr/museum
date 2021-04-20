@@ -28,6 +28,7 @@ const HeroPage = (props) => {
                 first = { index === 0 } 
                 name = { props.name }
                 img = { section.content.img }
+                img_sign = { section.content.img_sign }
                 text = { section.content.text }
               />
             )
@@ -37,6 +38,7 @@ const HeroPage = (props) => {
                 index = { index } 
                 last = { index === props.sections.length - 1 } 
                 img = { section.content.img }
+                img_sign = { section.content.img_sign }
                 text = { section.content.text }
               />
             )
@@ -54,6 +56,7 @@ const HeroPage = (props) => {
                 index = { index } 
                 last = { index === props.sections.length - 1 } 
                 img = { section.content.img }
+                img_sign = { section.content.img_sign }
               />
             )
           } else if (section.type === typeSectionTextText) {
@@ -72,6 +75,8 @@ const HeroPage = (props) => {
                 last = { index === props.sections.length - 1 } 
                 img1 = { section.content.img1 }
                 img2 = { section.content.img2 }
+                img_sign1 = { section.content.img_sign1 }
+                img_sign2 = { section.content.img_sign2 }
               />
             )
           }

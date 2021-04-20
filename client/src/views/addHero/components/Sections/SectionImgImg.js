@@ -1,5 +1,6 @@
 import HeroesSection from "../../../components/HeroesSection"
 import Dropzone from "../Dropzone"
+import Input from "../Input"
 
 
 
@@ -12,12 +13,22 @@ const SectionImgImg = (props) => {
       >
 
         <div className="heroes__section__content">
-          <Dropzone 
-            setContent = { (value) => { props.setContent(props.index, "img1", value) }  }
-          />
-          <Dropzone 
-            setContent = { (value) => { props.setContent(props.index, "img2", value) }  }
-          />
+          <div style = {{ width: "45%" }}>
+            <Dropzone 
+              setContent = { (value) => { props.setContent(props.index, "img1", value) }  }
+            />
+            <Input 
+              setContent = { (value) => { props.setContent(props.index, "img_sign1", value) }  }
+            />
+          </div>
+          <div style = {{ width: "45%" }}>
+            <Dropzone 
+              setContent = { (value) => { props.setContent(props.index, "img2", value) }  }
+            />
+            <Input 
+              setContent = { (value) => { props.setContent(props.index, "img_sign2", value) }  }
+            />
+          </div>
         </div>
 
         <button 

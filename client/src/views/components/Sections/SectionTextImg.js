@@ -8,7 +8,10 @@ const SectionTextImg = (props) => {
         to={!props.last ? `scr${props.index + 1}` : false}
       >
         <div className="heroes__section__content heroes__section__content--right" >
-        <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img}) center / cover no-repeat ` }}></div>
+        <div className="heroes__section__content__img-box">
+          <div className="heroes__section__content__img" style = {{ background: `url(/uploads/${props.img}) center / cover no-repeat ` }}></div>
+            <p className="heroes__section__content__img-sign"> { props.img_sign } </p>
+          </div>
           <p> {props.text} </p>
           
         </div>

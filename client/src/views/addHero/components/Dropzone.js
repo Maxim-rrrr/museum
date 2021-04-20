@@ -30,7 +30,7 @@ const Dropzone = (props) => {
   };
   
   const dropzoneSection = {
-    width: '45%',
+    width: '100%',
     minHeight: '300px',
     margin: props.full ? "20vh auto 0" : 0
   };

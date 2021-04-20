@@ -22,6 +22,9 @@ const heroPage = ts_mongoose_1.createSchema({
             img: ts_mongoose_1.Type.string(),
             img1: ts_mongoose_1.Type.string(),
             img2: ts_mongoose_1.Type.string(),
+            img_sign: ts_mongoose_1.Type.string(),
+            img_sign1: ts_mongoose_1.Type.string(),
+            img_sign2: ts_mongoose_1.Type.string(),
         },
         additionallyTop: ts_mongoose_1.Type.array({ default: [] }).of(ts_mongoose_1.Type.string()),
         additionallyBottom: ts_mongoose_1.Type.array({ default: [] }).of(ts_mongoose_1.Type.string())
