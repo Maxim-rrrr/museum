@@ -8,7 +8,7 @@ const Img = (props) => {
     margin: "auto"
   })
 
-  useEffect(() => {
+  function setSize(heightPage, widthPage) {
     const img = document.getElementById(props.src)
     
     let imgHeight = img.naturalHeight
@@ -17,15 +17,15 @@ const Img = (props) => {
     let boxHeight
     let boxWidth
 
-    if (props.width <= 860) {
-      boxHeight = props.height * 0.8
-      boxWidth = props.width * 0.9
+    if (widthPage <= 860) {
+      boxHeight = heightPage * 0.8
+      boxWidth = widthPage * 0.9
     } else if (props.full) {
-      boxHeight = props.height * 0.65
-      boxWidth = props.width * 0.9
+      boxHeight = heightPage * 0.65
+      boxWidth = widthPage * 0.9
     } else {
-      boxHeight = props.height * 0.65
-      boxWidth = props.width * 0.45
+      boxHeight = heightPage * 0.65
+      boxWidth = widthPage * 0.45
     }
 
 
@@ -45,8 +45,15 @@ const Img = (props) => {
         width: imgWidth * coefficientWidth
       })
     }
+  }
 
+  useEffect(() => {
+    setSize(props.height, props.width)
   }, [props.height, props.width])
+
+  useEffect(() => {
+    setSize(window.innerHeight, window.innerWidth)
+  }, [])
 
   return (
     <img 
