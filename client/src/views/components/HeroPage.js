@@ -17,8 +17,8 @@ import {
 } from "../addHero"
 
 const HeroPage = (props) => {
-  const [width, setWedth] = useState(window.innerWidth)
-  const [height, setHeight] = useState(window.innerHeight)
+  const [width, setWedth] = useState(false)
+  const [height, setHeight] = useState(false)
 
   useEffect(() => {
     window.addEventListener("resize", event => {
@@ -26,110 +26,113 @@ const HeroPage = (props) => {
       setHeight(event.target.innerHeight)
     });
 
-    setTimeout(() => {
-      setWedth(window.innerWidth)
-      setHeight(window.innerHeight)
-    }, 300)
+    setWedth(window.innerWidth)
+    setHeight(window.innerHeight)
 
   }, [])
 
   return (
-    <main style = {{ position: "relative" }}>
+    <>
       {
-        props.whoWrote && props.byWhom && 
-        <div className = "whoWrote-byWhom">
-          <p className="whoWrote">{ props.whoWrote }</p>
-          <p className="byWhom">{ props.byWhom }</p>
-        </div>
-      }
-
-      {
-        props.sections &&
-        props.sections.map((section, index) => {
-          if (section.type === typeSectionImgText) {
-            return (
-              <SectionImgText 
-                index = { index } 
-                last = { index === props.sections.length - 1 } 
-                first = { index === 0 } 
-                name = { props.name }
-                width = { width }
-                height = { height } 
-                img = { section.content.img }
-                img_sign = { section.content.img_sign }
-                text = { section.content.text }
-                title = { section.content.title }
-                subtitle = { section.content.subtitle }
-              />
-            )
-          } else if (section.type === typeSectionTextImg) {
-            return (
-              <SectionTextImg 
-                index = { index } 
-                last = { index === props.sections.length - 1 } 
-                width = { width }
-                height = { height }
-                img = { section.content.img }
-                img_sign = { section.content.img_sign }
-                text = { section.content.text }
-                title = { section.content.title }
-                subtitle = { section.content.subtitle }
-              />
-            )
-          } else if (section.type === typeSectionText) {
-            return (
-              <SectionText
-                index = { index } 
-                last = { index === props.sections.length - 1 } 
-                text = { section.content.text }
-                title = { section.content.title }
-                subtitle = { section.content.subtitle }
-              />
-            )
-          } else if (section.type === typeSectionImg) {
-            return (
-              <SectionImg 
-                index = { index } 
-                last = { index === props.sections.length - 1 }
-                width = { width }
-                height = { height }  
-                img = { section.content.img }
-                img_sign = { section.content.img_sign }
-                title = { section.content.title }
-                subtitle = { section.content.subtitle }
-              />
-            )
-          } else if (section.type === typeSectionTextText) {
-            return (
-              <SectionTextText
-                index = { index } 
-                last = { index === props.sections.length - 1 } 
-                text1 = { section.content.text1 }
-                text2 = { section.content.text2 }
-                title = { section.content.title }
-                subtitle = { section.content.subtitle }
-              />
-            )
-          } else if (section.type === typeSectionImgImg) {
-            return (
-              <SectionImgImg
-                index = { index } 
-                last = { index === props.sections.length - 1 }
-                width = { width }
-                height = { height }
-                img1 = { section.content.img1 }
-                img2 = { section.content.img2 }
-                img_sign1 = { section.content.img_sign1 }
-                img_sign2 = { section.content.img_sign2 }
-                title = { section.content.title }
-                subtitle = { section.content.subtitle }
-              />
-            )
+        width && height &&
+        <main style = {{ position: "relative" }}>
+          {
+            props.whoWrote && props.byWhom && 
+            <div className = "whoWrote-byWhom">
+              <p className="whoWrote">{ props.whoWrote }</p>
+              <p className="byWhom">{ props.byWhom }</p>
+            </div>
           }
-          return <></>
-        })
+
+          {
+            props.sections &&
+            props.sections.map((section, index) => {
+              if (section.type === typeSectionImgText) {
+                return (
+                  <SectionImgText 
+                    index = { index } 
+                    last = { index === props.sections.length - 1 } 
+                    first = { index === 0 } 
+                    name = { props.name }
+                    width = { width }
+                    height = { height } 
+                    img = { section.content.img }
+                    img_sign = { section.content.img_sign }
+                    text = { section.content.text }
+                    title = { section.content.title }
+                    subtitle = { section.content.subtitle }
+                  />
+                )
+              } else if (section.type === typeSectionTextImg) {
+                return (
+                  <SectionTextImg 
+                    index = { index } 
+                    last = { index === props.sections.length - 1 } 
+                    width = { width }
+                    height = { height }
+                    img = { section.content.img }
+                    img_sign = { section.content.img_sign }
+                    text = { section.content.text }
+                    title = { section.content.title }
+                    subtitle = { section.content.subtitle }
+                  />
+                )
+              } else if (section.type === typeSectionText) {
+                return (
+                  <SectionText
+                    index = { index } 
+                    last = { index === props.sections.length - 1 } 
+                    text = { section.content.text }
+                    title = { section.content.title }
+                    subtitle = { section.content.subtitle }
+                  />
+                )
+              } else if (section.type === typeSectionImg) {
+                return (
+                  <SectionImg 
+                    index = { index } 
+                    last = { index === props.sections.length - 1 }
+                    width = { width }
+                    height = { height }  
+                    img = { section.content.img }
+                    img_sign = { section.content.img_sign }
+                    title = { section.content.title }
+                    subtitle = { section.content.subtitle }
+                  />
+                )
+              } else if (section.type === typeSectionTextText) {
+                return (
+                  <SectionTextText
+                    index = { index } 
+                    last = { index === props.sections.length - 1 } 
+                    text1 = { section.content.text1 }
+                    text2 = { section.content.text2 }
+                    title = { section.content.title }
+                    subtitle = { section.content.subtitle }
+                  />
+                )
+              } else if (section.type === typeSectionImgImg) {
+                return (
+                  <SectionImgImg
+                    index = { index } 
+                    last = { index === props.sections.length - 1 }
+                    width = { width }
+                    height = { height }
+                    img1 = { section.content.img1 }
+                    img2 = { section.content.img2 }
+                    img_sign1 = { section.content.img_sign1 }
+                    img_sign2 = { section.content.img_sign2 }
+                    title = { section.content.title }
+                    subtitle = { section.content.subtitle }
+                  />
+                )
+              }
+              return <></>
+            })
+          }
+        </main>
       }
-    </main>
+    </>
   )
 }
 
