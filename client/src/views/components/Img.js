@@ -39,9 +39,6 @@ const Img = (props) => {
       width: imgWidth * coefficient
     })
 
-    console.log(imgHeight * coefficient,
-      imgWidth * coefficient)
-    
   }, [props.height, props.width])
 
   return (
