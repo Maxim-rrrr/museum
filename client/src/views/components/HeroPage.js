@@ -26,12 +26,8 @@ const HeroPage = (props) => {
       setHeight(event.target.innerHeight)
     });
 
-    setTimeout(() => {
-      console.log(window.innerWidth, window.innerHeight)
-      setWedth(window.innerWidth)
-      setHeight(window.innerHeight)
-    }, 300)
-
+    setWedth(window.innerWidth)
+    setHeight(window.innerHeight)
   }, [])
 
   return (

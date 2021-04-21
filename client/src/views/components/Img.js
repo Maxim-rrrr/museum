@@ -33,28 +33,35 @@ const Img = (props) => {
     let coefficientHeight = boxHeight / imgHeight
     let coefficientWidth = boxWidth / imgWidth
 
-    if (coefficientHeight < coefficientWidth) {
-      setStyle({
-        ...style, 
-        height: imgHeight * coefficientHeight,
-        width: "auto"
-      })
+    if (imgHeight && imgWidth) {
+      if (coefficientHeight < coefficientWidth) {
+        setStyle({
+          ...style, 
+          height: imgHeight * coefficientHeight,
+          width: "auto"
+        })
+      } else {
+        setStyle({
+          ...style, 
+          height: "auto",
+          width: imgWidth * coefficientWidth
+        })
+      }
+      return true
     } else {
-      setStyle({
-        ...style, 
-        height: "auto",
-        width: imgWidth * coefficientWidth
-      })
+      return false
     }
   }
 
   useEffect(() => {
-    setSize(props.height, props.width)
+    if (!setSize(props.height, props.width)) {
+      let timer = setInterval(() => {
+        if (setSize(window.innerHeight, window.innerWidth)) {
+          clearInterval(timer)
+        }
+      }, 100)
+    }
   }, [props.height, props.width])
-
-  useEffect(() => {
-    setSize(window.innerHeight, window.innerWidth)
-  }, [])
 
   return (
     <img 
