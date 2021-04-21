@@ -242,8 +242,8 @@ const AddHero = () => {
 
       const formData = new FormData();
 
-      formData.append("surnameHero", values.nameHero);
-      formData.append("nameHero", values.surnameHero);
+      formData.append("surnameHero", values.surnameHero);
+      formData.append("nameHero", values.nameHero);
       formData.append("patronymicHero", values.patronymicHero);
       formData.append("email", values.email);
       formData.append("whoWrote", values.whoWrote);

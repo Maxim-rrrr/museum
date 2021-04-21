@@ -5,7 +5,8 @@ const Img = (props) => {
   const [style, setStyle] = useState({
     ...props.style,
     display: "block",
-    margin: "auto"
+    margin: "auto",
+    height: "65vh"
   })
 
   function setSize(heightPage, widthPage) {
