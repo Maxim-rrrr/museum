@@ -1,6 +1,5 @@
 import "./main.sass";
 import logo_ngpu from "../../img/main/logo_ngpu.png";
-import logo_archeo from "../../img/main/logo_archeo.png";
 import arrow_down from "../../img/main/arrow_down.svg";
 
 import React, { useState, useEffect } from 'react';
@@ -40,12 +39,11 @@ const Main = () => {
           <header className="hero__header">
             <div className="logo-box">
               <img src={logo_ngpu} alt="" className="logo" />
-              <img src={logo_archeo} alt="" className="logo" />
             </div>
 
             <h2 className="hero__title">НГПУ</h2>
 
-            <div style={{ width: "calc(132rem / 14)" }} />
+            <div style={{ width: "calc(66rem / 14)" }} />
           </header>
 
           <h1 className="title">Музей славы</h1>
