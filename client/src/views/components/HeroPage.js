@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react"
+
 import SectionImgText from "./Sections/SectionImgText.js"
 import SectionTextImg from "./Sections/SectionTextImg.js"
 import SectionText from "./Sections/SectionText.js"
@@ -15,6 +17,21 @@ import {
 } from "../addHero"
 
 const HeroPage = (props) => {
+  const [width, setWedth] = useState(window.innerWidth)
+  const [height, setHeight] = useState(window.innerHeight)
+
+  useEffect(() => {
+    window.addEventListener("resize", event => {
+      // console.log(event.target.innerWidth)
+      // console.log(event.target.innerHeight)
+      // style = {
+      //   width: `${event.target.innerWidth}`
+      // }
+      setWedth(event.target.innerWidth)
+      setHeight(event.target.innerHeight)
+    });
+  }, [])
+
   return (
     <main style = {{ position: "relative" }}>
       {
@@ -35,6 +52,8 @@ const HeroPage = (props) => {
                 last = { index === props.sections.length - 1 } 
                 first = { index === 0 } 
                 name = { props.name }
+                width = { width }
+                height = { height } 
                 img = { section.content.img }
                 img_sign = { section.content.img_sign }
                 text = { section.content.text }
@@ -47,6 +66,8 @@ const HeroPage = (props) => {
               <SectionTextImg 
                 index = { index } 
                 last = { index === props.sections.length - 1 } 
+                width = { width }
+                height = { height }
                 img = { section.content.img }
                 img_sign = { section.content.img_sign }
                 text = { section.content.text }
@@ -68,7 +89,9 @@ const HeroPage = (props) => {
             return (
               <SectionImg 
                 index = { index } 
-                last = { index === props.sections.length - 1 } 
+                last = { index === props.sections.length - 1 }
+                width = { width }
+                height = { height }  
                 img = { section.content.img }
                 img_sign = { section.content.img_sign }
                 title = { section.content.title }
@@ -90,7 +113,9 @@ const HeroPage = (props) => {
             return (
               <SectionImgImg
                 index = { index } 
-                last = { index === props.sections.length - 1 } 
+                last = { index === props.sections.length - 1 }
+                width = { width }
+                height = { height }
                 img1 = { section.content.img1 }
                 img2 = { section.content.img2 }
                 img_sign1 = { section.content.img_sign1 }

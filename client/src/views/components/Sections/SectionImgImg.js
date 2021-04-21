@@ -1,4 +1,5 @@
 import HeroesSection from "../HeroesSection";
+import Img from "../Img"
 
 const SectionImgImg = (props) => {
   return (
@@ -12,11 +13,19 @@ const SectionImgImg = (props) => {
 
         <div className="heroes__section__content heroes__section__content--left">
           <div className="heroes__section__content__img-box">
-            <img src={ `/uploads/${props.img1}` } className="heroes__section__content__img" alt=""/>
+            <Img 
+              src={ `/uploads/${props.img1}` } 
+              width = { props.width }
+              height = { props.height }
+            />
             <p className="heroes__section__content__img-sign"> { props.img_sign1 } </p>
           </div>
           <div className="heroes__section__content__img-box">
-            <img src={ `/uploads/${props.img2}` } className="heroes__section__content__img" alt=""/>
+            <Img 
+              src={ `/uploads/${props.img2}` } 
+              width = { props.width }
+              height = { props.height }
+            />
             <p className="heroes__section__content__img-sign"> { props.img_sign2 } </p>
           </div>
         </div>
