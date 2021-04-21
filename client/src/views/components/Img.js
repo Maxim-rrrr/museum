@@ -35,11 +35,13 @@ const Img = (props) => {
     if (coefficientHeight < coefficientWidth) {
       setStyle({
         ...style, 
-        height: imgHeight * coefficientHeight
+        height: imgHeight * coefficientHeight,
+        width: "auto"
       })
     } else {
       setStyle({
         ...style, 
+        height: "auto",
         width: imgWidth * coefficientWidth
       })
     }
