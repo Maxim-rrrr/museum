@@ -46,8 +46,6 @@ const Img = (props) => {
       })
     }
 
-    
-
   }, [props.height, props.width])
 
   return (
