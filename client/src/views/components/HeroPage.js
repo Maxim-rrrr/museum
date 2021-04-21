@@ -22,11 +22,6 @@ const HeroPage = (props) => {
 
   useEffect(() => {
     window.addEventListener("resize", event => {
-      // console.log(event.target.innerWidth)
-      // console.log(event.target.innerHeight)
-      // style = {
-      //   width: `${event.target.innerWidth}`
-      // }
       setWedth(event.target.innerWidth)
       setHeight(event.target.innerHeight)
     });

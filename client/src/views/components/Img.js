@@ -31,13 +31,20 @@ const Img = (props) => {
 
     let coefficientHeight = boxHeight / imgHeight
     let coefficientWidth = boxWidth / imgWidth
-    let coefficient = coefficientHeight < coefficientWidth ? coefficientHeight : coefficientWidth
 
-    setStyle({
-      ...style, 
-      height: imgHeight * coefficient,
-      width: imgWidth * coefficient
-    })
+    if (coefficientHeight < coefficientWidth) {
+      setStyle({
+        ...style, 
+        height: imgHeight * coefficientHeight
+      })
+    } else {
+      setStyle({
+        ...style, 
+        width: imgWidth * coefficientWidth
+      })
+    }
+
+    
 
   }, [props.height, props.width])
 
