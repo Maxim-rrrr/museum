@@ -54,7 +54,7 @@ const HeroesTable = (props) => {
 
   if (props.pages) {
     props.pages.forEach((page) => {
-      let name = `${page.surnameHero} ${page.nameHero[0]}. ${page.patronymicHero[0]}.`
+      let name = `${page.surnameHero} ${page.nameHero[0]}. ${page.patronymicHero ? page.patronymicHero[0] + ".": ""}`
 
       let card = {
         name,

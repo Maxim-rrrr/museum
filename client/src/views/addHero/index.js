@@ -183,13 +183,15 @@ const AddHero = () => {
       } 
 
       // Проверка на заполненность секций
+      let validSection = true;
+
       sections.forEach((section, index) => {
         if (Object.keys(section.content).some(v => v == "img")) {
           if (!section.content.img) {
             setAlertText(`В ${index + 1} секции не загружено изображение`)
             setAlertColor("error")
             setAlert(true)
-            return
+            validSection = false
           } 
         }
         if (Object.keys(section.content).some(v => v == "img1" || v == "img2")) {
@@ -197,7 +199,7 @@ const AddHero = () => {
             setAlertText(`В ${index + 1} секции не загружено изображение`)
             setAlertColor("error")
             setAlert(true)
-            return
+            validSection = false
           } 
         }
 
@@ -206,7 +208,7 @@ const AddHero = () => {
             setAlertText(`В ${index + 1} не заполнено текстовое поле`)
             setAlertColor("error")
             setAlert(true)
-            return
+            validSection = false
           } 
         }
         if (Object.keys(section.content).some(v => v == "text1" || v == "text2")) {
@@ -214,12 +216,15 @@ const AddHero = () => {
             setAlertText(`В ${index + 1} не заполнено текстовое поле`)
             setAlertColor("error")
             setAlert(true)
-            return
+            validSection = false
           } 
         }
 
       })
 
+      if (!validSection) {
+        return
+      }
       /**
        * Сбор изображений для отправки
        * 
