@@ -31,9 +31,12 @@ const SectionImgText = (props) => {
             <Dropzone 
               setContent = { (value) => { props.setContent(props.index, "img", value) }  }
             />
-            <Input 
-              setContent = { (value) => { props.setContent(props.index, "img_sign", value) }  }
-            />
+            {
+              !props.first &&
+              <Input 
+                setContent = { (value) => { props.setContent(props.index, "img_sign", value) }  }
+              />
+            }
           </div>
           <Textarea 
             setContent = { (value) => { props.setContent(props.index, "text", value) }  }

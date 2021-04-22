@@ -16,8 +16,10 @@ const SectionImgText = (props) => {
               src={ `/uploads/${props.img}` }
               width = { props.width }
               height = { props.height } 
+              tape = { props.first }
             />
-            <p className="heroes__section__content__img-sign"> { props.img_sign } </p>
+
+            { !props.first && <p className="heroes__section__content__img-sign"> { props.img_sign } </p> }
           </div>
           <p> {props.text} </p>
         </div>

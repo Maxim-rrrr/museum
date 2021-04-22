@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import tape from "../../img/tape.png"
 
 const Img = (props) => {
 
@@ -64,13 +65,23 @@ const Img = (props) => {
   }, [props.height, props.width])
 
   return (
-    <img 
-      id = { props.src }
-      src = { props.src }
-      className = { props.className }
-      style = { style }
-      alt = { props.alt }
-    />
+    <div style = { {...style, position: "relative"} }>
+      <img 
+        id = { props.src }
+        src = { props.src }
+        className = { props.className }
+        style = { style }
+        alt = { props.alt }
+      />
+      {
+        props.tape && 
+        <img 
+          src = { tape } 
+          alt = ""
+          style = {{ width: style.width, position: "absolute", bottom: "-17%" }}
+        />
+      }
+    </div>
   )
 }
 
