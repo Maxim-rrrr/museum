@@ -106,9 +106,7 @@ const Main = () => {
         
         {
           loading ? <></> :
-          <HeroesTable pages = { pages }>
-            
-          </HeroesTable>
+          <HeroesTable pages = { pages } />
         }
       </Element>
     </>
