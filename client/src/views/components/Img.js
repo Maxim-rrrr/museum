@@ -6,7 +6,6 @@ const Img = (props) => {
   const [style, setStyle] = useState({
     ...props.style,
     display: "block",
-    margin: "auto",
     height: "65vh"
   })
 
@@ -65,12 +64,12 @@ const Img = (props) => {
   }, [props.height, props.width])
 
   return (
-    <div style = { {...style, position: "relative"} }>
+    <div style = { {...style, position: "relative"} } className = { props.tape ? "tape-box" : "" }>
       <img 
         id = { props.src }
         src = { props.src }
         className = { props.className }
-        style = { style }
+        style = { {...style, margin: "auto"} }
         alt = { props.alt }
       />
       {
