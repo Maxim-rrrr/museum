@@ -21,13 +21,17 @@ const HeroPage = (props) => {
   const [height, setHeight] = useState(window.innerHeight)
 
   useEffect(() => {
-    window.addEventListener("resize", event => {
+    const setSize = event => {
       setWedth(event.target.innerWidth)
       setHeight(event.target.innerHeight)
-    });
+    }
+
+    window.addEventListener("resize", setSize);
 
     setWedth(window.innerWidth)
     setHeight(window.innerHeight)
+
+    return () => window.removeEventListener("resize", setSize)
   }, [])
 
   return (

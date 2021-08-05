@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import tape from "../../img/tape.png"
 
 const Img = (props) => {
+  const imgRef = useRef(null)
 
   const [style, setStyle] = useState({
     ...props.style,
@@ -10,7 +11,7 @@ const Img = (props) => {
   })
 
   function setSize(heightPage, widthPage) {
-    const img = document.getElementById(props.src)
+    const img = imgRef.current
     
     let imgHeight = img.naturalHeight
     let imgWidth = img.naturalWidth
@@ -66,7 +67,7 @@ const Img = (props) => {
   return (
     <div style = { {...style, position: "relative"} } className = { props.tape ? "tape-box" : "" }>
       <img 
-        id = { props.src }
+        ref = { imgRef }
         src = { props.src }
         className = { props.className }
         style = { {...style, margin: "auto"} }
