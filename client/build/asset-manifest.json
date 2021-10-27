@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.262f7cf2.chunk.css",
+    "main.js": "/static/js/main.5c574a08.chunk.js",
+    "main.js.map": "/static/js/main.5c574a08.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.87bd3dfa.js",
+    "runtime-main.js.map": "/static/js/runtime-main.87bd3dfa.js.map",
+    "static/css/2.679831fc.chunk.css": "/static/css/2.679831fc.chunk.css",
+    "static/js/2.c6674ac3.chunk.js": "/static/js/2.c6674ac3.chunk.js",
+    "static/js/2.c6674ac3.chunk.js.map": "/static/js/2.c6674ac3.chunk.js.map",
+    "static/js/3.fc569740.chunk.js": "/static/js/3.fc569740.chunk.js",
+    "static/js/3.fc569740.chunk.js.map": "/static/js/3.fc569740.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.262f7cf2.chunk.css.map": "/static/css/main.262f7cf2.chunk.css.map",
+    "static/js/2.c6674ac3.chunk.js.LICENSE.txt": "/static/js/2.c6674ac3.chunk.js.LICENSE.txt",
+    "static/media/arrow-down.5b0512cf.svg": "/static/media/arrow-down.5b0512cf.svg",
+    "static/media/arrow_down.312dd4fc.svg": "/static/media/arrow_down.312dd4fc.svg",
+    "static/media/main.sass": "/static/media/line.1acff4a2.png",
+    "static/media/index.sass": "/static/media/revers_bg.021279b4.jpg",
+    "static/media/logo_ngpu.a1b96b13.png": "/static/media/logo_ngpu.a1b96b13.png",
+    "static/media/tape.0e27aca6.png": "/static/media/tape.0e27aca6.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.87bd3dfa.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.c6674ac3.chunk.js",
+    "static/css/main.262f7cf2.chunk.css",
+    "static/js/main.5c574a08.chunk.js"
+  ]
+}
